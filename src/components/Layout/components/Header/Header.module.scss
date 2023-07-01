@@ -1,0 +1,25 @@
+.wrapper {
+    top: 0;
+    justify-content: center;
+    position: fixed;
+    height: var(--default-layout-header-height, 60px);
+    width: var(--default-layout-width);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 1);
+    z-index: 1000;
+}
+
+.inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    -webkit-app-region: drag;
+    max-width: 100%;
+    padding-right: 24px;
+    padding-left: 16px;
+}

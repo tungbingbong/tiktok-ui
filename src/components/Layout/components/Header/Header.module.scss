@@ -127,3 +127,19 @@
 .search-btn-icon {
     margin-left: -4px;
 }
+
+.menu-btn {
+    position: relative;
+    cursor: pointer;
+    font-size: 2rem;
+    display: block;
+    margin-left: 16px;
+    background-color: transparent;
+    font-style: normal;
+    padding: 0 18px;
+    -webkit-app-region: no-drag;
+}
+
+.actions {
+    display: flex;
+}

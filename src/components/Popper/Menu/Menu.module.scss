@@ -1,0 +1,32 @@
+// Menu wrapper
+.menu-list {
+    min-width: 224px;
+    font-weight: 500;
+    padding: 8px 20px;
+
+    .menu-item {
+        margin-left: 0;
+    }
+
+    a {
+        padding: 8px 19px;
+    }
+
+    button:nth-child(1) {
+        padding: 8px 19px;
+    }
+}
+
+.menu-popper {
+    padding-bottom: 8px;
+}
+
+.menu-item {
+    width: 100%;
+    justify-content: flex-start;
+    font-weight: 500;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}

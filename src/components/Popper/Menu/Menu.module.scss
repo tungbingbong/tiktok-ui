@@ -9,11 +9,11 @@
     }
 
     a {
-        padding: 8px 19px;
+        padding: 10px 19px;
     }
 
     button:nth-child(1) {
-        padding: 8px 19px;
+        padding: 10px 19px;
     }
 }
 
@@ -29,4 +29,33 @@
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
     }
+}
+
+// Header menu level 2
+.header {
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    -webkit-box-align: center;
+    margin-top: -8px;
+}
+
+.back-btn {
+    font-size: 18px;
+    margin-left: 20px;
+    background: transparent;
+    padding: 0 !important;
+    cursor: pointer;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.03px;
 }

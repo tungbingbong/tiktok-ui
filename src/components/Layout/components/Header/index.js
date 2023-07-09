@@ -7,17 +7,34 @@ import {
     faMagnifyingGlass,
     faPlus,
     faSpinner,
+    faCloudArrowUp,
+    faChartLine,
+    faVideo,
+    faHouseChimneyUser,
+    faGear,
+    faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react/headless';
-import styles from './Header.module.scss';
+import Tippy from '@tippyjs/react';
+import HeadlessTippy from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css';
 
 import Button from '~/components/Button';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import images from '~/assets/images';
+import styles from './Header.module.scss';
 import { useEffect, useState } from 'react';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
-import { faKeyboard, faMoon, faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
+import {
+    faKeyboard,
+    faMoon,
+    faCircleQuestion,
+    faMessage,
+    faComment,
+    faUser,
+    faBookmark,
+} from '@fortawesome/free-regular-svg-icons';
+import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -63,12 +80,58 @@ const MENU_ITEMS = [
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
 
+    const currentUser = true;
+
     useEffect(() => {
         setTimeout(() => {
             setSearchResult([]);
         }, 0);
     }, []);
 
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View profile',
+            to: '/@lephuonganh',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faBookmark} />,
+            title: 'Favorites',
+            to: '/favorite',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faTiktok} />,
+            title: 'Get coins',
+            to: '/coin',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faChartLine} />,
+            title: 'View Analytics',
+            to: '/analytic',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faVideo} />,
+            title: 'Live Studio',
+            to: '/livestudio',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faHouseChimneyUser} />,
+            title: 'Live Center',
+            to: '/livecenter',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Settings',
+            to: '/setting',
+        },
+        ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+            title: 'Log out',
+            to: '/logout',
+            separate: true,
+        },
+    ];
     // Handle logic
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -89,7 +152,7 @@ function Header() {
                     </a>
                 </div>
 
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
@@ -115,18 +178,47 @@ function Header() {
                             <FontAwesomeIcon className={cx('search-btn-icon')} icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
 
                 <div className={cx('actions')}>
-                    <Button to="/upload" text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
-                        Upload
-                    </Button>
-                    <Button primary>Login</Button>
-
-                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                        <button className={cx('menu-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    {currentUser ? (
+                        <div className={cx('user-action-btn')}>
+                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faCloudArrowUp} />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 200]} content="Messages" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faMessage} />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faComment} />
+                                </button>
+                            </Tippy>
+                        </div>
+                    ) : (
+                        <>
+                            <Button to="/upload" text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                                Upload
+                            </Button>
+                            <Button primary>Login</Button>
+                        </>
+                    )}
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <img
+                                className={cx('user-avatar')}
+                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/78f4e6eb4cb4a7a9afc26ac17b2a3038~c5_100x100.jpeg?x-expires=1689037200&x-signature=NtJxoH%2FMIAmAKXnZYRtq6bDmI4I%3D"
+                                alt="Tran Tien Tung"
+                            />
+                        ) : (
+                            <button className={cx('menu-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

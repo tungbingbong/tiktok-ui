@@ -9,11 +9,11 @@
     }
 
     a {
-        padding: 10px 19px;
+        padding: 10px 10px !important;
     }
 
     button:nth-child(1) {
-        padding: 10px 19px;
+        padding: 10px 10px !important;
     }
 }
 
@@ -24,7 +24,7 @@
 .menu-item {
     width: 100%;
     justify-content: flex-start;
-    font-weight: 500;
+    font-weight: 600;
     color: rgb(10, 11, 16);
 
     &.separate {

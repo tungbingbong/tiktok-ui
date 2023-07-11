@@ -4,10 +4,8 @@ import {
     faCircleXmark,
     faEarthAsia,
     faEllipsisVertical,
-    faMagnifyingGlass,
     faPlus,
     faSpinner,
-    faCloudArrowUp,
     faChartLine,
     faVideo,
     faHouseChimneyUser,
@@ -25,15 +23,8 @@ import styles from './Header.module.scss';
 import { useEffect, useState } from 'react';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
-import {
-    faKeyboard,
-    faMoon,
-    faCircleQuestion,
-    faMessage,
-    faComment,
-    faUser,
-    faBookmark,
-} from '@fortawesome/free-regular-svg-icons';
+import { InboxIcon, MessageIcon, SearchIcon, UploadIcon } from '~/components/Icons';
+import { faKeyboard, faMoon, faCircleQuestion, faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 const cx = classNames.bind(styles);
@@ -139,7 +130,7 @@ function Header() {
                 // Handle change language
                 break;
             default:
-                alert('Sr, This function being developed');
+                alert('Sorry, This function being developed');
         }
     };
 
@@ -175,7 +166,7 @@ function Header() {
                         </button>
                         <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
                         <button className={cx('search-btn')}>
-                            <FontAwesomeIcon className={cx('search-btn-icon')} icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </HeadlessTippy>
@@ -185,17 +176,17 @@ function Header() {
                         <div className={cx('user-action-btn')}>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudArrowUp} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                             <Tippy delay={[0, 200]} content="Messages" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faMessage} />
+                                    <MessageIcon />
                                 </button>
                             </Tippy>
                             <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faComment} />
+                                    <InboxIcon />
                                 </button>
                             </Tippy>
                         </div>

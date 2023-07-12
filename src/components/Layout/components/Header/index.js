@@ -2,14 +2,10 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleXmark,
-    faEarthAsia,
     faEllipsisVertical,
     faPlus,
     faSpinner,
     faChartLine,
-    faVideo,
-    faHouseChimneyUser,
-    faGear,
     faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
@@ -23,15 +19,25 @@ import styles from './Header.module.scss';
 import { useEffect, useState } from 'react';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
-import { InboxIcon, MessageIcon, SearchIcon, UploadIcon } from '~/components/Icons';
+import {
+    InboxIcon,
+    MessageIcon,
+    SearchIcon,
+    UploadIcon,
+    StudioIcon,
+    CoinsIcon,
+    LiveIcon,
+    SettingIcon,
+    LanguageIcon,
+} from '~/components/Icons';
 import { faKeyboard, faMoon, faCircleQuestion, faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
-import { faTiktok } from '@fortawesome/free-brands-svg-icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
-        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        icon: <LanguageIcon className={cx('icon-popper')} />,
         title: 'English',
         className: 'faEarthAsia',
         children: {
@@ -91,7 +97,7 @@ function Header() {
             to: '/favorite',
         },
         {
-            icon: <FontAwesomeIcon icon={faTiktok} />,
+            icon: <CoinsIcon className={cx('icon-popper')} />,
             title: 'Get coins',
             to: '/coin',
         },
@@ -101,17 +107,17 @@ function Header() {
             to: '/analytic',
         },
         {
-            icon: <FontAwesomeIcon icon={faVideo} />,
+            icon: <StudioIcon className={cx('icon-popper')} />,
             title: 'Live Studio',
             to: '/livestudio',
         },
         {
-            icon: <FontAwesomeIcon icon={faHouseChimneyUser} />,
+            icon: <LiveIcon />,
             title: 'Live Center',
             to: '/livecenter',
         },
         {
-            icon: <FontAwesomeIcon icon={faGear} />,
+            icon: <SettingIcon className={cx('icon-popper')} />,
             title: 'Settings',
             to: '/setting',
         },
@@ -187,6 +193,7 @@ function Header() {
                             <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <InboxIcon />
+                                    <span className={cx('badge')}>+99</span>
                                 </button>
                             </Tippy>
                         </div>
@@ -200,10 +207,11 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/78f4e6eb4cb4a7a9afc26ac17b2a3038~c5_100x100.jpeg?x-expires=1689037200&x-signature=NtJxoH%2FMIAmAKXnZYRtq6bDmI4I%3D"
                                 alt="Tran Tien Tung"
+                                fallback="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/bad679d6d45b98f5fdafae269fac1141~c5_100x100.jpeg?x-expires=1689224400&x-signature=1Z7CzropUL4ODy9ep9V%2FqPB3Kr8%3D"
                             />
                         ) : (
                             <button className={cx('menu-btn')}>

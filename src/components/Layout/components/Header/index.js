@@ -164,9 +164,9 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/78f4e6eb4cb4a7a9afc26ac17b2a3038~c5_100x100.jpeg?x-expires=1689037200&x-signature=NtJxoH%2FMIAmAKXnZYRtq6bDmI4I%3D"
+                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/7fd84876bde5c1efa34a96ec5c38fd1e~c5_100x100.jpeg?x-expires=1689411600&x-signature=Ud6U3yOQNpGfoPBLcB7Iqrzj%2F6U%3D"
                                 alt="Tran Tien Tung"
-                                fallback="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/bad679d6d45b98f5fdafae269fac1141~c5_100x100.jpeg?x-expires=1689224400&x-signature=1Z7CzropUL4ODy9ep9V%2FqPB3Kr8%3D"
+                                fallback="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/7fd84876bde5c1efa34a96ec5c38fd1e~c5_100x100.jpeg?x-expires=1689411600&x-signature=Ud6U3yOQNpGfoPBLcB7Iqrzj%2F6U%3D"
                             />
                         ) : (
                             <button className={cx('menu-btn')}>

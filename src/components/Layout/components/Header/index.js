@@ -1,8 +1,10 @@
 import classNames from 'classnames/bind';
+import routesConfig from '~/config/routes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faPlus, faChartLine, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { Link } from 'react-router-dom';
 
 import Button from '~/components/Button';
 import images from '~/assets/images';
@@ -125,9 +127,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <a href="/" alt="logo-tiktok">
+                    <Link to={routesConfig.home} className={cx('logo-link')}>
                         <img src={images.logo} alt="logo-tiktok" />
-                    </a>
+                    </Link>
                 </div>
 
                 <Search />
@@ -164,7 +166,7 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/7fd84876bde5c1efa34a96ec5c38fd1e~c5_100x100.jpeg?x-expires=1689411600&x-signature=Ud6U3yOQNpGfoPBLcB7Iqrzj%2F6U%3D"
+                                src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/856d6e040a2b3181553f302cdef7f5f5.jpeg?x-expires=1689678000&x-signature=quclXFPJ%2B6csaZMOpiONcIEZl0s%3D"
                                 alt="Tran Tien Tung"
                                 fallback="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/7fd84876bde5c1efa34a96ec5c38fd1e~c5_100x100.jpeg?x-expires=1689411600&x-signature=Ud6U3yOQNpGfoPBLcB7Iqrzj%2F6U%3D"
                             />

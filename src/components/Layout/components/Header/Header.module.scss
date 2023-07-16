@@ -1,6 +1,6 @@
 .wrapper {
     --search-height: 46px;
-
+    display: flex;
     top: 0;
     justify-content: center;
     position: fixed;
@@ -30,6 +30,10 @@
     display: flex;
     align-items: center;
     min-width: 200px;
+}
+
+.logo-link {
+    display: flex;
 }
 
 // Actions
@@ -87,7 +91,7 @@
     font-size: 1.4rem;
     font-weight: 600;
     color: rgb(255, 255, 255);
-    font-family: 'TikTokFont', sans-serif;
+    font-family: var(--font-family);
     background-color: rgb(254, 44, 85);
 }
 

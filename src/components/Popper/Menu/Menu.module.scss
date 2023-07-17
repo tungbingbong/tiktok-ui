@@ -21,6 +21,10 @@
     padding-bottom: 8px;
 }
 
+.menu-body {
+    overflow-y: auto;
+}
+
 .menu-item {
     width: 100%;
     justify-content: flex-start;
@@ -39,7 +43,8 @@
 // Header menu level 2
 .header {
     position: relative;
-    height: 50px;
+    height: 56px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     -webkit-box-align: center;

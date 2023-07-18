@@ -29,7 +29,7 @@ const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
         icon: <LanguageIcon className={cx('icon-popper')} />,
-        title: 'English',
+        title: 'Language',
         className: 'faEarthAsia',
         children: {
             title: 'Language',

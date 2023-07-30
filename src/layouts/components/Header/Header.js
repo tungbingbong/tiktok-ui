@@ -1,3 +1,4 @@
+import { createContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faPlus, faChartLine, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -23,8 +24,18 @@ import {
 import { faKeyboard, faMoon, faCircleQuestion, faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+import AuthModal from '~/layouts/components/Auth/Modal';
+import Login from '~/layouts/components/Auth/partials/Login';
+import SignUp from '~/layouts/components/Auth/partials/SignUp';
+import PhoneAndCodeLoginForm from '~/layouts/components/Auth/partials/PhoneAndCodeLoginForm';
+import PhoneAndPasswordLoginForm from '~/layouts/components/Auth/partials/PhoneAndPasswordLoginForm';
+import EmailAndPasswordLoginForm from '~/layouts/components/Auth/partials/EmailAndPasswordLoginForm';
+import ResetPasswordWithPhone from '~/layouts/components/Auth/partials/ResetPasswordWithPhone';
+import ResetPasswordWithEmail from '~/layouts/components/Auth/partials/ResetPasswordWithEmail';
 
 const cx = classNames.bind(styles);
+
+export const ModalBodyNameContext = createContext();
 
 const MENU_ITEMS = [
     {
@@ -66,7 +77,11 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = true;
+    const currentUser = false;
+    const [showAuthModal, setShowAuthModal] = useState(false);
+    const [children, setChildren] = useState(<Login />);
+    const [navigateBack, setNavigateBack] = useState(null);
+    const [modalBodyName, setModalBodyName] = useState('login');
 
     const userMenu = [
         {
@@ -123,6 +138,52 @@ function Header() {
         }
     };
 
+    const handleModalBodyName = (value) => {
+        setModalBodyName(value ?? 'login');
+    };
+
+    const value = {
+        modalBodyName,
+        navigateBack,
+        handleModalBodyName,
+    };
+
+    useEffect(() => {
+        switch (modalBodyName) {
+            case 'login':
+                setChildren(<Login />);
+                setNavigateBack(null);
+                break;
+            case 'signup':
+                setChildren(<SignUp />);
+                setNavigateBack(null);
+                break;
+            case 'login-with-phone':
+                setChildren(<PhoneAndCodeLoginForm />);
+                setNavigateBack('login');
+                break;
+            case 'login-with-phone-and-password':
+                setChildren(<PhoneAndPasswordLoginForm />);
+                setNavigateBack('login-with-phone');
+                break;
+            case 'login-with-email':
+                setChildren(<EmailAndPasswordLoginForm />);
+                setNavigateBack('login-with-phone');
+                break;
+            case 'reset-password-with-phone':
+                setChildren(<ResetPasswordWithPhone />);
+                setNavigateBack('login-with-phone-and-password');
+                break;
+            case 'reset-password-with-email':
+                setChildren(<ResetPasswordWithEmail />);
+                setNavigateBack('reset-password-with-phone');
+                break;
+            default:
+                setChildren(<Login />);
+                break;
+        }
+    }, [modalBodyName]);
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -159,16 +220,31 @@ function Header() {
                             <Button to="/upload" text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
                                 Upload
                             </Button>
-                            <Button primary>Login</Button>
+                            <Button primary to="/" onClick={() => setShowAuthModal(true)}>
+                                Login
+                            </Button>
                         </>
                     )}
+
+                    <ModalBodyNameContext.Provider value={value}>
+                        {showAuthModal && (
+                            <AuthModal
+                                children={children}
+                                onClose={() => {
+                                    setShowAuthModal(false);
+                                    setModalBodyName('');
+                                }}
+                            />
+                        )}
+                    </ModalBodyNameContext.Provider>
+
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/33590ecc73d6224049607bf3abe724db~c5_100x100.jpeg?x-expires=1690106400&x-signature=E3WdxFos3v%2BRyTPum6ZaQqZB0Zg%3D"
+                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/a8132595cf7f9c9789a5e3bac92d1497~c5_100x100.jpeg?x-expires=1690628400&x-signature=zv6F3lH1Y9zCdcDDDNNU5g3XWeQ%3D"
                                 alt="Tran Tien Tung"
-                                fallback="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/33590ecc73d6224049607bf3abe724db~c5_100x100.jpeg?x-expires=1690106400&x-signature=E3WdxFos3v%2BRyTPum6ZaQqZB0Zg%3D"
+                                fallback="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/a8132595cf7f9c9789a5e3bac92d1497~c5_100x100.jpeg?x-expires=1690628400&x-signature=zv6F3lH1Y9zCdcDDDNNU5g3XWeQ%3D"
                             />
                         ) : (
                             <button className={cx('menu-btn')}>

@@ -1,32 +1,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-// import * as authService from '~/services/authService';
+import * as authService from '~/services/authService';
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header';
 import { useContext, useState } from 'react';
-import classNames from 'classnames/bind';
-import styles from '~/layouts/components/Auth/AuthModal.module.scss';
-
-const cx = classNames.bind(styles);
 
 function EmailAndPasswordLoginForm() {
     const value = useContext(ModalBodyNameContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    // const loginUser = () => {
-    //     authService
-    //         .login(username, password)
-    //         .then((data) => {
-    //             if (data.meta && data.meta.token) {
-    //                 localStorage.setItem('user', JSON.stringify(data));
-    //                 window.location.reload();
-    //             } else {
-    //                 alert('Username or password is invalid! Please try again');
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         });
-    // };
+    const loginUser = () => {
+        authService
+            .login(username, password)
+            .then((data) => {
+                if (data.meta && data.meta.token) {
+                    localStorage.setItem('user', JSON.stringify(data));
+                    window.location.reload();
+                } else {
+                    alert('Username or password is invalid! Please try again');
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <>
@@ -80,7 +76,19 @@ function EmailAndPasswordLoginForm() {
                         >
                             Forget password?
                         </a>
-                        <button className={cx('submit-btn')}>Log in</button>
+                        <button
+                            className="mt-8 border-none bg-primary text-white text-base leading-5 font-bold font-primary rounded flex items-center justify-center w-full cursor-pointer py-1.5 px-2"
+                            style={{
+                                minWidth: '120px',
+                                minHeight: '46px',
+                            }}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                loginUser();
+                            }}
+                        >
+                            Log in
+                        </button>
                     </form>
                 </div>
             </div>

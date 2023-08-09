@@ -13,7 +13,15 @@ function AccountPreview({ data }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <img className={cx('avatar')} src={data.avatar} alt={data.nickname} />
+                <img
+                    className={cx('avatar')}
+                    src={data.avatar}
+                    alt={data.nickname}
+                    onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = 'https://avatars.dicebear.com/api/micah/henrybui_io.svg';
+                    }}
+                />
                 <Button className={cx('follow-btn')} primary>
                     Follow
                 </Button>

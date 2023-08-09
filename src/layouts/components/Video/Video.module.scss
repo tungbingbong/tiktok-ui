@@ -1,0 +1,183 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 20px 0;
+    max-width: 692px;
+    border-bottom: 1px solid rgba(22, 24, 35, 0.2);
+}
+
+.avatar {
+    display: flex;
+    width: 62px;
+    height: 56px;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    cursor: pointer;
+    line-height: 32px;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    border-color: rgba(22, 24, 35, 0.12);
+    border-width: 0.5px;
+    background-color: rgba(136, 136, 136, 0.5);
+}
+
+.body {
+    width: 624px;
+    flex: 1 1 624px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+
+.header {
+    margin-right: 114px;
+}
+
+.header-username {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 4px;
+}
+.header-fullname {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    margin-right: 8px;
+    font-family: TiktokFonts, Arial, Tahoma, PingFangSC, sans-serif;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.header-nickname {
+    display: inline-block;
+    font-weight: 100;
+    font-size: 14px;
+    line-height: 27px;
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+}
+
+.btn-follow {
+    right: 16px;
+    height: 36px;
+    font-size: 16px;
+    padding: 2px 24px;
+    line-height: 24px;
+    min-width: 96px;
+    font-weight: 600;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--primary);
+    border-radius: 2px;
+    border: 1px solid var(--primary);
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    position: absolute;
+    margin-top: -24px;
+}
+
+.header-desc {
+    display: flex;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 8px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.header-title {
+    height: 100%;
+    margin-right: 4px;
+}
+
+.header-underline {
+    font-weight: 600;
+    margin: 0 4px;
+    color: #2b5eba;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.music-icon {
+    display: flex;
+    font-size: 14px;
+    line-height: 24px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.music-name {
+    font-weight: 400;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.video-frame {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: flex-end;
+}
+
+.video-thumb {
+    margin-right: 16px;
+}
+
+.video {
+    width: 302px;
+    cursor: pointer;
+    min-height: 170px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-size: cover;
+}
+
+.interaction-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.icon-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    outline: none;
+    width: 48px;
+    height: 48px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    transition: all 200ms ease-in-out 0s;
+    background-color: rgba(22, 24, 35, 0.06);
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+.text-name {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: rgba(22, 24, 35, 0.75);
+}

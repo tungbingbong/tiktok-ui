@@ -5,24 +5,21 @@
 }
 
 .container {
-    margin-top: 60px;
     display: flex;
-    width: var(--default-layout-width);
+    justify-content: space-between;
     max-width: 100%;
-    align-self: center;
-    flex: 1 1 auto;
+    margin-top: 60px;
+    padding: 0 24px;
+    width: var(--default-layout-width);
 }
 
 .content {
     position: relative;
-    width: 100%;
     min-width: 420px;
     margin: 0 auto;
     flex-shrink: 1;
     display: flex;
-    // align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     height: 1000px;
-    background-color: #ccc;
 }

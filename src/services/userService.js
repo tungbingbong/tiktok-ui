@@ -1,6 +1,6 @@
 import * as httpRequest from '~/utils/httpRequest';
 
-export const getSuggestedUser = async (page, perPage) => {
+export const getSuggestedUsers = async (page, perPage) => {
     try {
         const res = await httpRequest.get('users/suggested', {
             params: {
@@ -14,11 +14,11 @@ export const getSuggestedUser = async (page, perPage) => {
     }
 };
 
-export const getFollowingUsers = async (page) => {
+export const getFollowingUsers = async (page, accessToken) => {
     try {
         const res = await httpRequest.get('me/followings', {
             headers: {
-                Authorization: `Bearer ${process.env.REACT_AUTH_TOKEN}`,
+                Authorization: `Bearer ${accessToken}`,
             },
             params: {
                 page: page,

@@ -4,6 +4,7 @@ module.exports = {
         extend: {
             colors: {
                 primary: '#fe2c55',
+                secondary: '#fe2c550f',
             },
             fontFamily: { primary: 'TikTokFont, sans-serif' },
         },

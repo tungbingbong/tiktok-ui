@@ -2,11 +2,11 @@ import * as httpRequest from '~/utils/httpRequest';
 
 export const login = async (email, password) => {
     try {
-        return httpRequest.post('auth/login', {
+        return await httpRequest.post('auth/login', {
             email: email,
             password: password,
         });
     } catch (err) {
-        console.log(err);
+        return err.response.data;
     }
 };

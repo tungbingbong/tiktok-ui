@@ -13,6 +13,11 @@ const cx = classNames.bind(styles);
 
 function AccountItem({ data }) {
     const renderPreview = (props) => {
+        // Don't render preview with the account has been followed
+        if (data.is_followed) {
+            return <></>;
+        }
+
         return (
             <div tabIndex="-1" {...props}>
                 <PopperWrapper>
@@ -27,7 +32,15 @@ function AccountItem({ data }) {
             <Tippy interactive delay={[500, 0]} placement="bottom" render={renderPreview}>
                 <Link to={`/@${data.nickname}`}>
                     <div className={cx('account-item')}>
-                        <img className={cx('avatar')} src={data.avatar} alt={data.nickname} />
+                        <img
+                            className={cx('avatar')}
+                            src={data.avatar}
+                            alt={data.nickname}
+                            onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = 'https://avatars.dicebear.com/api/micah/henrybui_io.svg';
+                            }}
+                        />
                         <div className={cx('item-info')}>
                             <p className={cx('nickname')}>
                                 <strong>{data.nickname}</strong>

@@ -77,7 +77,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = false;
+    const currentUser = JSON.parse(localStorage.getItem('user'));
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [children, setChildren] = useState(<Login />);
     const [navigateBack, setNavigateBack] = useState(null);
@@ -241,10 +241,10 @@ function Header() {
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
                             <Image
-                                className={cx('user-avatar')}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/a8132595cf7f9c9789a5e3bac92d1497~c5_100x100.jpeg?x-expires=1690628400&x-signature=zv6F3lH1Y9zCdcDDDNNU5g3XWeQ%3D"
-                                alt="Tran Tien Tung"
-                                fallback="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/a8132595cf7f9c9789a5e3bac92d1497~c5_100x100.jpeg?x-expires=1690628400&x-signature=zv6F3lH1Y9zCdcDDDNNU5g3XWeQ%3D"
+                                className="ml-4 h-8 w-8 object-cover rounded-full cursor-pointer"
+                                src={currentUser.data.avatar}
+                                alt={currentUser.data.nickname}
+                                fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
                             />
                         ) : (
                             <button className={cx('menu-btn')}>

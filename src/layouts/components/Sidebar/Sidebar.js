@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 import Menu, { MenuItem } from './Menu';
@@ -24,28 +25,43 @@ const PER_PAGE = 5;
 function Sidebar() {
     const [page, setPage] = useState(INIT_PAGE);
     const [suggestedUsers, setSuggestedUsers] = useState([]);
-    // const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE);
-    // const [followingUsers, setFollowingUsers] = useState([]);
+    const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE);
+    const [followingUsers, setFollowingUsers] = useState([]);
 
+    // Get suggested users
     useEffect(() => {
         userService
-            .getSuggestedUser({ page, perPage: PER_PAGE })
+            .getSuggestedUsers({ page, perPage: PER_PAGE })
             .then((data) => {
-                setSuggestedUsers((prevUser) => [...prevUser, ...data]);
+                if (Array.isArray(data)) {
+                    setSuggestedUsers((prevUsers) => [...prevUsers, ...data]);
+                }
             })
-            .catch((err) => {
-                console.error(err);
+            .catch((error) => {
+                console.log(error);
             });
-        // userService
-        //     .getFollowingUsers(followingUsersPage)
-        //     .then((data) => {
-        //         setFollowingUsersPage((prev) => [...prev, ...data]);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+
+        if (currentUser && currentUser.meta.token) {
+            userService
+                .getFollowingUsers(followingUsersPage, currentUser.meta.token)
+                .then((data) => {
+                    if (Array.isArray(data)) {
+                        setFollowingUsers((prev) => [...prev, ...data]);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else {
+            setFollowingUsers([]);
+        }
+    }, []);
+
+    // Get following users
 
     return (
         <aside className={cx('wrapper')}>
@@ -67,7 +83,7 @@ function Sidebar() {
             </Menu>
 
             <SuggestedAccounts label="Suggested accounts" data={suggestedUsers} />
-            {/* <SuggestedAccounts label="Following accounts" data={followingUsers} /> */}
+            <SuggestedAccounts label="Following accounts" data={followingUsers} />
         </aside>
     );
 }

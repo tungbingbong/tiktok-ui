@@ -5,7 +5,7 @@ import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
-import { faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -39,6 +39,9 @@ function Video({ video }) {
                             <h3 className={cx('header-fullname')}>
                                 {`${video.user.first_name} ${video.user.last_name}`}
                             </h3>
+                            {video.user.tick && (
+                                <FontAwesomeIcon className="mx-1 text-sky-400" icon={faCircleCheck}></FontAwesomeIcon>
+                            )}
                             <h4 className={cx('header-nickname')}>{video.user.nickname}</h4>
                         </a>
                     </div>
@@ -68,7 +71,7 @@ function Video({ video }) {
 
                 <div className={cx('video-frame')}>
                     <div className={cx('video-thumb')}>
-                        <video className={cx('video')} controls autoPlay poster={video.thumb_url}>
+                        <video className={cx('video')} controls loop={true} autoPlay muted poster={video.thumb_url}>
                             <source src={video.file_url} type="video/mp4" />
                             Your browser does not support HTML video.
                         </video>

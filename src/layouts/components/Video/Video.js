@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 
 function Video({ video }) {
     const [description, setDescription] = useState('');
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState(['foryourpage', 'foryou', 'trending']);
 
     useEffect(() => {
         const videoDesc = video.description;
@@ -75,9 +75,6 @@ function Video({ video }) {
                                 #{tag}
                             </a>
                         ))}
-                        <a className={cx('header-underline')} href="#">
-                            #trending
-                        </a>
                     </div>
                 </div>
 

@@ -41,6 +41,7 @@ const MENU_ITEMS = [
     {
         icon: <LanguageIcon className={cx('icon-popper')} />,
         title: 'Language',
+        to: '',
         className: 'faEarthAsia',
         children: {
             title: 'Language',
@@ -135,6 +136,15 @@ function Header() {
                 break;
             default:
                 alert('Sorry, This function being developed');
+        }
+
+        switch (menuItem.to) {
+            case '/logout':
+                localStorage.removeItem('user');
+                window.location.reload();
+                break;
+            default:
+                break;
         }
     };
 

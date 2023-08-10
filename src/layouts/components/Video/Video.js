@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
@@ -6,10 +7,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
 import { faCircleCheck, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Video({ video }) {
+    const [description, setDescription] = useState('');
+    const [tags, setTags] = useState([]);
+
+    useEffect(() => {
+        const videoDesc = video.description;
+
+        if (videoDesc.includes('#')) {
+            const explodedDesc = videoDesc.split('#');
+
+            setDescription(explodedDesc[0]);
+
+            // Remove first item, it is description
+            explodedDesc.shift();
+
+            setTags(explodedDesc);
+        } else {
+            setDescription(videoDesc);
+        }
+    }, []);
+
     const preview = () => {
         // Don't render preview with the account has been followed
         if (video.user.is_followed) {
@@ -27,8 +49,8 @@ function Video({ video }) {
 
     return (
         <div className={cx('wrapper')}>
-            <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
-                <a className={cx('avatar')} href="#">
+            <Tippy interactive delay={[100, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
+                <a className={cx('avatar')} href={`@${video.user.nickname}`}>
                     <img className={cx('avatar-img')} src={video.user.avatar} alt={video.user.nickname} />
                 </a>
             </Tippy>
@@ -47,13 +69,12 @@ function Video({ video }) {
                     </div>
                     <button className={cx('btn-follow')}>Follow</button>
                     <div className={cx('header-desc')}>
-                        <span className={cx('header-title')}>{video.description}</span>
-                        <a className={cx('header-underline')} href="#">
-                            #fyp
-                        </a>
-                        <a className={cx('header-underline')} href="#">
-                            #xuhuong
-                        </a>
+                        {description}
+                        {tags.map((tag, key) => (
+                            <a className={cx('header-underline')} key={key} href={`/tag/${tag}`}>
+                                #{tag}
+                            </a>
+                        ))}
                         <a className={cx('header-underline')} href="#">
                             #trending
                         </a>

@@ -47,7 +47,7 @@ function Sidebar() {
 
         if (currentUser && currentUser.meta.token) {
             userService
-                .getFollowingUsers(followingUsersPage, currentUser.meta.token)
+                .getFollowingUsers({ page: followingUsersPage, accessToken: currentUser.meta.token })
                 .then((data) => {
                     if (Array.isArray(data)) {
                         setFollowingUsers((prev) => [...prev, ...data]);

@@ -1,5 +1,27 @@
 .wrapper {
-    position: relative;
-    width: 280px;
+    overflow: hidden auto;
+    overscroll-behavior-y: contain;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    perspective-origin: right top;
     padding: 20px 0px 26px 0;
+    width: 280px;
+    background: rgb(255, 255, 255);
+    position: fixed;
+    z-index: 99;
+    height: 100%;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 5px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #988;
 }

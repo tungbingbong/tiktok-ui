@@ -5,8 +5,12 @@ module.exports = {
             colors: {
                 primary: '#fe2c55',
                 secondary: '#fe2c550f',
+                'badge-blue': '#20d5ec',
             },
-            fontFamily: { primary: 'TikTokFont, sans-serif' },
+            fontFamily: {
+                primary: 'ProximaNova, Arial, Tahoma, PingFangSC, sans-serif',
+                secondary: 'SofiaPro, Arial, Tahoma, PingFangSC, sans-serif',
+            },
         },
     },
     plugins: [],

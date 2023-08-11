@@ -19,7 +19,7 @@ function AccountItem({ data }) {
         }
 
         return (
-            <div tabIndex="-1" {...props}>
+            <div className="hidden lg:block" tabIndex="-1" {...props}>
                 <PopperWrapper>
                     <AccountPreview data={data} />
                 </PopperWrapper>

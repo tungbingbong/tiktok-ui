@@ -89,7 +89,15 @@ function Video({ video }) {
 
                 <div className={cx('video-frame')}>
                     <div className={cx('video-thumb')}>
-                        <video className={cx('video')} controls loop={true} autoPlay muted poster={video.thumb_url}>
+                        <video
+                            className={cx('video')}
+                            controls
+                            loop={true}
+                            muted
+                            autoPlay
+                            playsInline
+                            poster={video.thumb_url}
+                        >
                             <source src={video.file_url} type="video/mp4" />
                             Your browser does not support HTML video.
                         </video>

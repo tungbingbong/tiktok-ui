@@ -1,10 +1,22 @@
 .wrapper {
+    position: relative;
     padding: 0 0 16px 0;
     color: rgba(22, 24, 35, 0.75);
     font-family: 'TikTok', sans-serif;
     font-weight: 500;
     font-size: 1.4rem;
     border-top: 1px solid #e3e3e4;
+
+    &::before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 8px;
+        right: 8px;
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.1);
+        transform: scale(0.5);
+    }
 }
 
 .label {

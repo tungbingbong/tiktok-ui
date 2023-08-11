@@ -12,12 +12,14 @@ import {
     ExploreActiveIcon,
     VideoActiveIcon,
 } from '~/components/Icons';
-import SuggestedAccounts from '~/components/SuggestedAccounts';
+// import SuggestedAccounts from '~/components/SuggestedAccounts';
+import SidebarAccountSpinner from './SidebarAccountSpinner';
 import config from '~/config';
 import * as userService from '~/services/userService';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 
 const cx = classNames.bind(styles);
+const SuggestedAccounts = lazy(() => import('~/components/SuggestedAccounts'));
 
 const INIT_PAGE = 1;
 const PER_PAGE = 5;
@@ -81,9 +83,10 @@ function Sidebar() {
                 />
                 <MenuItem title="LIVE" to={config.routes.live} icon={<VideoIcon />} activeIcon={<VideoActiveIcon />} />
             </Menu>
-
-            <SuggestedAccounts label="Suggested accounts" data={suggestedUsers} />
-            <SuggestedAccounts label="Following accounts" data={followingUsers} />
+            <Suspense fallback={<SidebarAccountSpinner label="Suggested accounts" />}>
+                <SuggestedAccounts label="Suggested accounts" data={suggestedUsers} />
+                <SuggestedAccounts label="Following accounts" data={followingUsers} />
+            </Suspense>
         </aside>
     );
 }

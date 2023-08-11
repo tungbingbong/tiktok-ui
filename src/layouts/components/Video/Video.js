@@ -57,6 +57,14 @@ function Video({ video }) {
         }
     }, [isVisible]);
 
+    const handleLikeVideo = () => {
+        alert('The API does not support like a video now! Try again later');
+    };
+
+    const handleClickComment = () => {
+        alert('Coming soon...');
+    };
+
     const preview = () => {
         // Don't render preview with the account has been followed
         if (video.user.is_followed) {
@@ -119,7 +127,6 @@ function Video({ video }) {
                             ref={videoRef}
                             controls
                             loop={true}
-                            muted
                             playsInline
                             poster={video.thumb_url}
                         >
@@ -128,11 +135,11 @@ function Video({ video }) {
                         </video>
                     </div>
                     <div className={cx('interaction-icon')}>
-                        <button className={cx('icon-name')}>
+                        <button className={cx('icon-name')} onClick={handleLikeVideo}>
                             <FontAwesomeIcon icon={faHeart} size="xl"></FontAwesomeIcon>
                         </button>
                         <strong className={cx('text-name')}>{video.likes_count}</strong>
-                        <button className={cx('icon-name')}>
+                        <button className={cx('icon-name')} onClick={handleClickComment}>
                             <FontAwesomeIcon icon={faCommentDots} size="xl"></FontAwesomeIcon>
                         </button>
                         <strong className={cx('text-name')}>{video.comments_count}</strong>

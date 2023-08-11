@@ -7,13 +7,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
 import { faCircleCheck, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useElementOnScreen from '~/hooks/useElementOnScreen';
 
 const cx = classNames.bind(styles);
 
 function Video({ video }) {
     const [description, setDescription] = useState('');
     const [tags, setTags] = useState(['foryourpage', 'foryou', 'trending']);
+    const [playing, setPlaying] = useState(false);
+    const videoRef = useRef(null);
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.7,
+    };
+    const isVisible = useElementOnScreen(options, videoRef);
 
     useEffect(() => {
         const videoDesc = video.description;
@@ -31,6 +40,20 @@ function Video({ video }) {
             setDescription(videoDesc);
         }
     }, []);
+
+    useEffect(() => {
+        if (isVisible) {
+            if (!playing) {
+                videoRef.current.play();
+                setPlaying(true);
+            }
+        } else {
+            if (playing) {
+                videoRef.current.pause();
+                setPlaying(false);
+            }
+        }
+    }, [isVisible]);
 
     const preview = () => {
         // Don't render preview with the account has been followed
@@ -91,10 +114,10 @@ function Video({ video }) {
                     <div className={cx('video-thumb')}>
                         <video
                             className={cx('video')}
+                            ref={videoRef}
                             controls
                             loop={true}
                             muted
-                            autoPlay
                             playsInline
                             poster={video.thumb_url}
                         >

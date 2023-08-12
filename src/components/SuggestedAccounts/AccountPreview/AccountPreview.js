@@ -62,7 +62,7 @@ function AccountPreview({ data }) {
                 <Button
                     className={`${cx('follow-btn')} ${followed ? cx('followed-btn') : cx('unfollowed-btn')}`}
                     primary
-                    onClick={handleToggleFollow}
+                    onClick={() => handleToggleFollow()}
                 >
                     {followed ? 'Following' : 'Follow'}
                 </Button>

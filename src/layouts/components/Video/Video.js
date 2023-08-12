@@ -9,13 +9,15 @@ import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
 import { faCircleCheck, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 import useElementOnScreen from '~/hooks/useElementOnScreen';
+import * as userService from '~/services/userService';
 
 const cx = classNames.bind(styles);
 
-function Video({ video }) {
+function Video({ video, isFollowingTheOwner }) {
     const [description, setDescription] = useState('');
     const [tags, setTags] = useState(['foryourpage', 'foryou', 'trending']);
     const [playing, setPlaying] = useState(false);
+    const [followed, setFollowed] = useState(video.user.is_followed);
     const videoRef = useRef(null);
     const options = {
         root: null,
@@ -23,6 +25,16 @@ function Video({ video }) {
         threshold: 0.7,
     };
     const isVisible = useElementOnScreen(options, videoRef);
+
+    const preview = () => {
+        return (
+            <div tabIndex="-1">
+                <PopperWrapper>
+                    <AccountPreview data={video.user} />
+                </PopperWrapper>
+            </div>
+        );
+    };
 
     useEffect(() => {
         const videoDesc = video.description;
@@ -57,27 +69,44 @@ function Video({ video }) {
         }
     }, [isVisible]);
 
+    const handleToggleFollow = () => {
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+        if (!currentUser || !currentUser.meta.token) {
+            alert('Please login!');
+            return;
+        }
+
+        if (followed) {
+            userService
+                .unfollowAnUser({ userId: video.user.id, accessToken: currentUser.meta.token })
+                .then((res) => {
+                    if (res.data) {
+                        setFollowed(res.data.is_followed);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else {
+            userService
+                .followAnUser({ userId: video.user.id, accessToken: currentUser.meta.token })
+                .then((res) => {
+                    if (res.data) {
+                        setFollowed(res.data.is_followed);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    };
+
     const handleLikeVideo = () => {
         alert('The API does not support like a video now! Try again later');
     };
 
     const handleClickComment = () => {
         alert('Coming soon...');
-    };
-
-    const preview = () => {
-        // Don't render preview with the account has been followed
-        if (video.user.is_followed) {
-            return <></>;
-        }
-
-        return (
-            <div tabIndex="-1">
-                <PopperWrapper>
-                    <AccountPreview data={video.user} />
-                </PopperWrapper>
-            </div>
-        );
     };
 
     return (
@@ -100,7 +129,12 @@ function Video({ video }) {
                             <h4 className={cx('header-nickname')}>{video.user.nickname}</h4>
                         </a>
                     </div>
-                    <button className={cx('btn-follow')}>Follow</button>
+                    <button
+                        className={`${cx('btn-follow')} ${followed ? cx('btn-followed') : cx('btn-unfollowed')}`}
+                        onClick={() => handleToggleFollow()}
+                    >
+                        {followed ? 'Following' : 'Follow'}
+                    </button>
                     <div className={cx('header-desc')}>
                         {description}
                         {tags.map((tag, key) => (

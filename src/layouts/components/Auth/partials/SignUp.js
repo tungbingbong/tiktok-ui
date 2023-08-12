@@ -53,7 +53,7 @@ function SignUp() {
                     </div>
                 </a>
             ) : (
-                <div>
+                <div key={key}>
                     <div className="font-primary font-semibold text-sm border border-solid border-black/10 text-black/80 py-0 px-3 flex items-center justify-center h-11 relative cursor-pointer mb-4 break-keep space-nowrap bg-white">
                         <div className="flex absolute text-lg left-3">{button.icon}</div>
                         {button.text}

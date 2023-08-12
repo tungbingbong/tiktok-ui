@@ -126,6 +126,7 @@ function Video({ video }) {
                             className={cx('video')}
                             ref={videoRef}
                             controls
+                            muted
                             loop={true}
                             playsInline
                             poster={video.thumb_url}

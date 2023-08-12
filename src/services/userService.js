@@ -29,3 +29,27 @@ export const getFollowingUsers = async ({ page, accessToken }) => {
         console.log(err);
     }
 };
+
+export const followAnUser = async ({ userId, accessToken }) => {
+    try {
+        return await httpRequest.post(`users/${userId}/follow`, [], {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const unfollowAnUser = async ({ userId, accessToken }) => {
+    try {
+        return await httpRequest.post(`users/${userId}/unfollow`, [], {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+    } catch (err) {
+        console.log(err);
+    }
+};

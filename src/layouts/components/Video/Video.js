@@ -67,7 +67,7 @@ function Video({ video, isFollowingTheOwner }) {
                 setPlaying(false);
             }
         }
-    }, [isVisible]);
+    }, [isVisible, playing]);
 
     const handleToggleFollow = () => {
         const currentUser = JSON.parse(localStorage.getItem('user'));
@@ -129,12 +129,14 @@ function Video({ video, isFollowingTheOwner }) {
                             <h4 className={cx('header-nickname')}>{video.user.nickname}</h4>
                         </a>
                     </div>
-                    <button
-                        className={`${cx('btn-follow')} ${followed ? cx('btn-followed') : cx('btn-unfollowed')}`}
-                        onClick={() => handleToggleFollow()}
-                    >
-                        {followed ? 'Following' : 'Follow'}
-                    </button>
+                    {(isFollowingTheOwner === undefined || isFollowingTheOwner === false) && (
+                        <button
+                            className={`${cx('btn-follow')} ${followed ? cx('btn-followed') : cx('btn-unfollowed')}`}
+                            onClick={() => handleToggleFollow()}
+                        >
+                            {followed ? 'Following' : 'Follow'}
+                        </button>
+                    )}
                     <div className={cx('header-desc')}>
                         {description}
                         {tags.map((tag, key) => (

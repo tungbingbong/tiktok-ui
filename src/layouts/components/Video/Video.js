@@ -132,7 +132,7 @@ function Video({ video, isFollowingTheOwner }) {
                     {(isFollowingTheOwner === undefined || isFollowingTheOwner === false) && (
                         <button
                             className={`${cx('btn-follow')} ${followed ? cx('btn-followed') : cx('btn-unfollowed')}`}
-                            onClick={() => handleToggleFollow()}
+                            onClick={handleToggleFollow}
                         >
                             {followed ? 'Following' : 'Follow'}
                         </button>

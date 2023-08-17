@@ -77,7 +77,7 @@ const MENU_ITEMS = [
     },
 ];
 
-function Header() {
+function Header({ wider }) {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [children, setChildren] = useState(<Login />);
@@ -195,9 +195,9 @@ function Header() {
     }, [modalBodyName]);
 
     return (
-        <header className={cx('wrapper')}>
+        <header className={`${cx('wrapper')} ${wider ? cx('wrapper-1') : cx('wrapper-2')}`}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
+                <div className={cx('logo')} style={{ width: wider ? 'auto' : '200px' }}>
                     <Link to={config.routes.home} className={cx('logo-link')}>
                         <img src={images.logo} alt="logo-tiktok" />
                     </Link>

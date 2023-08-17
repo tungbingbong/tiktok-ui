@@ -29,7 +29,16 @@ function AccountItem({ data }) {
 
     return (
         <div>
-            <Tippy interactive delay={[500, 0]} placement="bottom" render={renderPreview}>
+            <Tippy
+                interactive
+                popperOptions={{
+                    strategy: 'fixed',
+                }}
+                delay={[200, 0]}
+                offset={[0, 2]}
+                placement="bottom"
+                render={renderPreview}
+            >
                 <Link to={`/@${data.nickname}`}>
                     <div className={cx('account-item')}>
                         <img

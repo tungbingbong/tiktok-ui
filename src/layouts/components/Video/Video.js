@@ -57,8 +57,10 @@ function Video({ video, isFollowingTheOwner }) {
         if (isVisible) {
             if (!playing) {
                 // Rewind the video and play from beginning
-                videoRef.current.currentTime = 0;
-                videoRef.current.play();
+                // videoRef.current.currentTime = 0;
+                setTimeout(() => {
+                    videoRef.current.play();
+                }, 250);
                 setPlaying(true);
             }
         } else {
@@ -163,7 +165,7 @@ function Video({ video, isFollowingTheOwner }) {
                             ref={videoRef}
                             controls
                             muted
-                            loop={true}
+                            loop
                             playsInline
                             poster={video.thumb_url}
                         >

@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    max-width: 100%;
+    margin-top: 60px;
+    padding: 0 24px;
+    width: 100%;
+}
+
+.content {
+    position: relative;
+    min-width: 420px;
+    margin: 0 0 0 280px;
+    flex-shrink: 1;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100%;
+}

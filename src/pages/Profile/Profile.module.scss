@@ -114,8 +114,8 @@
 .btn-followed {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 6px 8px;
-    margin-right: 8px;
     min-width: 164px;
     min-height: 36px;
     font-size: 18px;
@@ -123,6 +123,7 @@
     border-radius: 4px;
     color: rgba(254, 44, 85, 1);
     border: 1px solid rgba(254, 44, 85, 1);
+    background-color: rgb(255, 255, 255);
     position: relative;
     cursor: pointer;
 }

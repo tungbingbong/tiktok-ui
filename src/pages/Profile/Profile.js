@@ -11,22 +11,23 @@ const cx = classNames.bind(styles);
 function Profile() {
     const { nickname } = useParams();
     const [user, setUser] = useState(null);
+    const [followed, setFollowed] = useState(false);
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : '';
 
     useEffect(() => {
         if (nickname) {
-            const currentUser = JSON.parse(localStorage.getItem('user'));
-            const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : '';
-
             userService
                 .getUserProfile({ nickname, accessToken })
                 .then((data) => {
                     setUser(data);
+                    setFollowed(data.is_followed);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         }
-    }, [nickname]);
+    }, [nickname, accessToken]);
 
     function handleOnMouseOver(e) {
         e.target.play();
@@ -34,6 +35,42 @@ function Profile() {
 
     function handleOnMouseLeave(e) {
         e.target.pause();
+    }
+
+    function handleFollow() {
+        if (!accessToken) {
+            alert('Please login!');
+            return;
+        }
+
+        userService
+            .followAnUser({ userId: user.id, accessToken: accessToken })
+            .then((res) => {
+                if (res.data) {
+                    setFollowed(res.data.is_followed);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    function handleUnfollow() {
+        if (!accessToken) {
+            alert('Please login!');
+            return;
+        }
+
+        userService
+            .unfollowAnUser({ userId: user.id, accessToken: currentUser.meta.token })
+            .then((res) => {
+                if (res.data) {
+                    setFollowed(res.data.is_followed);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return user ? (
@@ -48,21 +85,22 @@ function Profile() {
                         <div className={cx('user-fullname')}>{`${user.first_name} ${user.last_name}`}</div>
                         <div className={cx('follow-container')}>
                             <div className={cx('message-container')}>
-                                <button
-                                    className={`${cx('btn-follow')} ${
-                                        user.is_followed ? cx('btn-followed') : cx('btn-unfollow')
-                                    }`}
-                                >
-                                    {user.is_followed ? 'Message' : 'Follow'}
-                                </button>
-                                {user.is_followed ? (
-                                    <Tippy content="Unfollow">
-                                        <button className={cx('icon-follow')}>
-                                            <FollowedIcon width={20} height={20} />
-                                        </button>
-                                    </Tippy>
+                                {followed ? (
+                                    <>
+                                        <button className={`${cx('btn-follow')} ${cx('btn-followed')}`}>Message</button>
+                                        <Tippy content="Unfollow" placement="bottom">
+                                            <button className={cx('icon-follow')} onClick={handleUnfollow}>
+                                                <FollowedIcon width={20} height={20} />
+                                            </button>
+                                        </Tippy>
+                                    </>
                                 ) : (
-                                    ''
+                                    <button
+                                        className={`${cx('btn-follow')} ${cx('btn-unfollow')}`}
+                                        onClick={handleFollow}
+                                    >
+                                        Follow
+                                    </button>
                                 )}
                             </div>
                         </div>

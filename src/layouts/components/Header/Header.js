@@ -88,7 +88,7 @@ function Header({ wider }) {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View profile',
-            to: '/@lephuonganh',
+            to: '/@profile',
         },
         {
             icon: <FontAwesomeIcon icon={faBookmark} />,
@@ -142,6 +142,9 @@ function Header({ wider }) {
             case '/logout':
                 localStorage.removeItem('user');
                 window.location.reload();
+                break;
+            case '/@profile':
+                window.location.href = `/@${currentUser.data.nickname}`;
                 break;
             default:
                 break;

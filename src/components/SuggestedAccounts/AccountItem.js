@@ -36,6 +36,7 @@ function AccountItem({ data }) {
                 }}
                 delay={[200, 0]}
                 offset={[0, 2]}
+                touch={false}
                 placement="bottom"
                 render={renderPreview}
             >

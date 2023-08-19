@@ -113,7 +113,14 @@ function Video({ video, isFollowingTheOwner }) {
 
     return (
         <div className={cx('wrapper')}>
-            <Tippy interactive delay={[100, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
+            <Tippy
+                interactive
+                delay={[100, 200]}
+                offset={[-10, 2]}
+                render={preview}
+                placement="bottom-start"
+                touch={false}
+            >
                 <a className={cx('avatar')} href={`@${video.user.nickname}`}>
                     <img className={cx('avatar-img')} src={video.user.avatar} alt={video.user.nickname} />
                 </a>

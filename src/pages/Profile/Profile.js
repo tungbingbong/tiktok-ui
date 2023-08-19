@@ -88,7 +88,7 @@ function Profile() {
             return (
                 <>
                     <button className={`${cx('btn-follow')} ${cx('btn-followed')}`}>Message</button>
-                    <Tippy content="Unfollow" placement="bottom">
+                    <Tippy content="Unfollow" placement="bottom" touch={false}>
                         <button className={cx('icon-follow')} onClick={handleUnfollow}>
                             <FollowedIcon width={20} height={20} />
                         </button>

@@ -216,12 +216,12 @@ function Header({ wider }) {
                                     <UploadIcon />
                                 </button>
                             </Tippy>
-                            <Tippy delay={[0, 200]} content="Messages" placement="bottom">
+                            <Tippy delay={[0, 200]} content="Messages" touch={false} placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <MessageIcon />
                                 </button>
                             </Tippy>
-                            <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
+                            <Tippy delay={[0, 200]} content="Inbox" touch={false} placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <InboxIcon />
                                     <span className={cx('badge')}>99+</span>

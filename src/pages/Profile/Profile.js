@@ -3,7 +3,7 @@ import styles from './Profile.module.scss';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Tippy from '@tippyjs/react';
-import { FollowedIcon, LockIcon } from '~/components/Icons';
+import { FollowedIcon, LockIcon, PenIcon } from '~/components/Icons';
 import * as userService from '~/services/userService';
 
 const cx = classNames.bind(styles);
@@ -73,6 +73,35 @@ function Profile() {
             });
     }
 
+    const renderButtons = () => {
+        if (currentUser && currentUser.data.nickname === nickname) {
+            return (
+                <button className={cx('btn-personal')}>
+                    <PenIcon width={20} height={20} classes="mr-2" />
+                </button>
+            );
+        }
+
+        if (followed) {
+            return (
+                <>
+                    <button className={`${cx('btn-follow')} ${cx('btn-followed')}`}>Message</button>
+                    <Tippy content="Unfollow" placement="bottom">
+                        <button className={cx('icon-follow')} onClick={handleUnfollow}>
+                            <FollowedIcon width={20} height={20} />
+                        </button>
+                    </Tippy>
+                </>
+            );
+        }
+
+        return (
+            <button className={`${cx('btn-follow')} ${cx('btn-unfollow')}`} onClick={handleFollow}>
+                Follow
+            </button>
+        );
+    };
+
     return user ? (
         <div className={cx('container')}>
             <div className={cx('header-wrapper')}>
@@ -84,25 +113,7 @@ function Profile() {
                         <div className={cx('user-nickname')}>{user.nickname}</div>
                         <div className={cx('user-fullname')}>{`${user.first_name} ${user.last_name}`}</div>
                         <div className={cx('follow-container')}>
-                            <div className={cx('message-container')}>
-                                {followed ? (
-                                    <>
-                                        <button className={`${cx('btn-follow')} ${cx('btn-followed')}`}>Message</button>
-                                        <Tippy content="Unfollow" placement="bottom">
-                                            <button className={cx('icon-follow')} onClick={handleUnfollow}>
-                                                <FollowedIcon width={20} height={20} />
-                                            </button>
-                                        </Tippy>
-                                    </>
-                                ) : (
-                                    <button
-                                        className={`${cx('btn-follow')} ${cx('btn-unfollow')}`}
-                                        onClick={handleFollow}
-                                    >
-                                        Follow
-                                    </button>
-                                )}
-                            </div>
+                            <div className={cx('message-container')}>{renderButtons()}</div>
                         </div>
                     </div>
                 </div>

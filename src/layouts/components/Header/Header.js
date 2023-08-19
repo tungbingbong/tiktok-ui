@@ -233,7 +233,14 @@ function Header({ wider }) {
                             <Button to="/upload" text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
                                 Upload
                             </Button>
-                            <Button primary to="/" onClick={() => setShowAuthModal(true)}>
+                            <Button
+                                primary
+                                to="/"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowAuthModal(true);
+                                }}
+                            >
                                 Login
                             </Button>
                         </>

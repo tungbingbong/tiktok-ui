@@ -68,7 +68,7 @@ function AccountPreview({ data }) {
                 </Button>
             </div>
             <div className={cx('body')}>
-                <Link to={`@${data.nickname}`}>
+                <Link to={`/@${data.nickname}`}>
                     <p className={cx('nickname')}>
                         <strong>{data.nickname}</strong>
                         {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}

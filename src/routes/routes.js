@@ -11,6 +11,7 @@ import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
 import Explore from '~/pages/Explore';
 import Live from '~/pages/Live';
+import NotFound from '~/pages/NotFound';
 import WiderLayout from '~/layouts/WiderLayout';
 
 // Public routes
@@ -20,6 +21,7 @@ export const publicRoutes = [
     { path: config.routes.profile, component: Profile, layout: WiderLayout },
     { path: config.routes.explore, component: Explore },
     { path: config.routes.live, component: Live },
+    { path: config.routes.notfound, component: NotFound },
     { path: config.routes.upload, component: Upload, layout: HeaderOnly },
     { path: config.routes.search, component: Search, layout: null },
 ];

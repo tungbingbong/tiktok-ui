@@ -33,12 +33,19 @@ function Following() {
     }, [page]);
 
     return (
-        <div className={cx('wrapper')}>
-            {videos.map((video) => (
-                <Video key={video.id} video={video} isFollowingTheOwner={true} />
-            ))}
-            {videos.length == 0 && <p className={cx('text-headline')}>No video from your followers</p>}
-        </div>
+        <>
+            {videos.length > 0 ? (
+                <div className={cx('wrapper')}>
+                    {videos.map((video) => (
+                        <Video key={video.id} video={video} isFollowingTheOwner={true} />
+                    ))}
+                </div>
+            ) : (
+                <div className={cx('content')}>
+                    <p className={cx('text-headline')}>No video from your followers</p>
+                </div>
+            )}
+        </>
     );
 }
 

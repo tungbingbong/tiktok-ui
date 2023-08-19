@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import Tippy from '@tippyjs/react';
 import { FollowedIcon, LockIcon, PenIcon } from '~/components/Icons';
 import * as userService from '~/services/userService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -110,7 +112,15 @@ function Profile() {
                         <img src={user.avatar} alt={user.nickname} className={cx('user-avatar-img')} />
                     </div>
                     <div className={cx('user-desc')}>
-                        <div className={cx('user-nickname')}>{user.nickname}</div>
+                        <div className={cx('user-nickname')}>
+                            {user.nickname}{' '}
+                            {user.tick && (
+                                <FontAwesomeIcon
+                                    className="ml-2 text-badge-blue text-base md:text-lg lg:text-xl"
+                                    icon={faCircleCheck}
+                                ></FontAwesomeIcon>
+                            )}
+                        </div>
                         <div className={cx('user-fullname')}>{`${user.first_name} ${user.last_name}`}</div>
                         <div className={cx('follow-container')}>
                             <div className={cx('message-container')}>{renderButtons()}</div>

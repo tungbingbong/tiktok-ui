@@ -16,7 +16,8 @@ import {
 import SidebarAccountSpinner from './SidebarAccountSpinner';
 import config from '~/config';
 import * as userService from '~/services/userService';
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, useState, lazy, Suspense, useContext } from 'react';
+import { AuthUserContext } from '~/App';
 
 const cx = classNames.bind(styles);
 const SuggestedAccounts = lazy(() => import('~/components/SuggestedAccounts'));
@@ -29,8 +30,8 @@ function Sidebar() {
     const [suggestedUsers, setSuggestedUsers] = useState([]);
     const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE);
     const [followingUsers, setFollowingUsers] = useState([]);
-    const currentUser = JSON.parse(localStorage.getItem('user'));
-    const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : '';
+    const authUser = useContext(AuthUserContext);
+    const accessToken = authUser && authUser.meta.token ? authUser.meta.token : '';
 
     // Get suggested users
     useEffect(() => {

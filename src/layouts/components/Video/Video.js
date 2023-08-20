@@ -7,9 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
 import { faCircleCheck, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useContext } from 'react';
 import useElementOnScreen from '~/hooks/useElementOnScreen';
 import * as userService from '~/services/userService';
+import { AuthUserContext } from '~/App';
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +26,7 @@ function Video({ video, isFollowingTheOwner }) {
         threshold: 0.7,
     };
     const isVisible = useElementOnScreen(options, videoRef);
+    const authUser = useContext(AuthUserContext);
 
     const preview = () => {
         return (
@@ -65,22 +67,23 @@ function Video({ video, isFollowingTheOwner }) {
             }
         } else {
             if (playing) {
-                videoRef.current.pause();
+                setTimeout(() => {
+                    videoRef.current.pause();
+                }, 250);
                 setPlaying(false);
             }
         }
     }, [isVisible, playing]);
 
     const handleToggleFollow = () => {
-        const currentUser = JSON.parse(localStorage.getItem('user'));
-        if (!currentUser || !currentUser.meta.token) {
+        if (!authUser || !authUser.meta.token) {
             alert('Please login!');
             return;
         }
 
         if (followed) {
             userService
-                .unfollowAnUser({ userId: video.user.id, accessToken: currentUser.meta.token })
+                .unfollowAnUser({ userId: video.user.id, accessToken: authUser.meta.token })
                 .then((res) => {
                     if (res.data) {
                         setFollowed(res.data.is_followed);
@@ -91,7 +94,7 @@ function Video({ video, isFollowingTheOwner }) {
                 });
         } else {
             userService
-                .followAnUser({ userId: video.user.id, accessToken: currentUser.meta.token })
+                .followAnUser({ userId: video.user.id, accessToken: authUser.meta.token })
                 .then((res) => {
                     if (res.data) {
                         setFollowed(res.data.is_followed);

@@ -1,12 +1,13 @@
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Tippy from '@tippyjs/react';
 import { FollowedIcon, LockIcon, PenIcon } from '~/components/Icons';
 import * as userService from '~/services/userService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { AuthUserContext } from '~/App';
 
 const cx = classNames.bind(styles);
 
@@ -14,8 +15,8 @@ function Profile() {
     const { nickname } = useParams();
     const [user, setUser] = useState(null);
     const [followed, setFollowed] = useState(false);
-    const currentUser = JSON.parse(localStorage.getItem('user'));
-    const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : '';
+    const authUser = useContext(AuthUserContext);
+    const accessToken = authUser && authUser.meta.token ? authUser.meta.token : '';
 
     useEffect(() => {
         if (nickname) {
@@ -64,7 +65,7 @@ function Profile() {
         }
 
         userService
-            .unfollowAnUser({ userId: user.id, accessToken: currentUser.meta.token })
+            .unfollowAnUser({ userId: user.id, accessToken: authUser.meta.token })
             .then((res) => {
                 if (res.data) {
                     setFollowed(res.data.is_followed);
@@ -76,7 +77,7 @@ function Profile() {
     }
 
     const renderButtons = () => {
-        if (currentUser && currentUser.data.nickname === nickname) {
+        if (authUser && authUser.data.nickname === nickname) {
             return (
                 <button className={cx('btn-personal')}>
                     <PenIcon width={20} height={20} classes="mr-2" />

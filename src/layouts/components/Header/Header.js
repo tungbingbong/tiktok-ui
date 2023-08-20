@@ -32,6 +32,8 @@ import PhoneAndPasswordLoginForm from '~/layouts/components/Auth/partials/PhoneA
 import EmailAndPasswordLoginForm from '~/layouts/components/Auth/partials/EmailAndPasswordLoginForm';
 import ResetPasswordWithPhone from '~/layouts/components/Auth/partials/ResetPasswordWithPhone';
 import ResetPasswordWithEmail from '~/layouts/components/Auth/partials/ResetPasswordWithEmail';
+import { useContext } from 'react';
+import { AuthUserContext } from '~/App';
 
 const cx = classNames.bind(styles);
 
@@ -78,11 +80,11 @@ const MENU_ITEMS = [
 ];
 
 function Header({ wider }) {
-    const currentUser = JSON.parse(localStorage.getItem('user'));
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [children, setChildren] = useState(<Login />);
     const [navigateBack, setNavigateBack] = useState(null);
     const [modalBodyName, setModalBodyName] = useState('login');
+    const authUser = useContext(AuthUserContext);
 
     const userMenu = [
         {
@@ -144,7 +146,7 @@ function Header({ wider }) {
                 window.location.reload();
                 break;
             case '/@profile':
-                window.location.href = `/@${currentUser.data.nickname}`;
+                window.location.href = `/@${authUser.data.nickname}`;
                 break;
             default:
                 break;
@@ -209,7 +211,7 @@ function Header({ wider }) {
                 <Search />
 
                 <div className={cx('actions')}>
-                    {currentUser ? (
+                    {authUser ? (
                         <div className={cx('user-action-btn')}>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
@@ -258,12 +260,12 @@ function Header({ wider }) {
                         )}
                     </ModalBodyNameContext.Provider>
 
-                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
-                        {currentUser ? (
+                    <Menu items={authUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {authUser ? (
                             <Image
                                 className="ml-4 h-8 w-8 object-cover rounded-full cursor-pointer"
-                                src={currentUser.data.avatar}
-                                alt={currentUser.data.nickname}
+                                src={authUser.data.avatar}
+                                alt={authUser.data.nickname}
                                 fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
                             />
                         ) : (

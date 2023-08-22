@@ -232,9 +232,11 @@ function Header({ wider }) {
                         </div>
                     ) : (
                         <>
-                            <Button to="/upload" text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
-                                Upload
-                            </Button>
+                            <Link to="/upload">
+                                <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                                    Upload
+                                </Button>
+                            </Link>
                             <Button
                                 primary
                                 to="/"

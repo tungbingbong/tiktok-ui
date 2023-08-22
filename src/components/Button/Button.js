@@ -9,6 +9,7 @@ function Button({
     to,
     href,
     primary = false,
+    green = false,
     outline = false,
     text = false,
     small = false,
@@ -54,6 +55,7 @@ function Button({
         large,
         disabled,
         rounded,
+        green,
     });
 
     return (
@@ -69,6 +71,7 @@ Button.propTypes = {
     to: PropTypes.string,
     href: PropTypes.string,
     primary: PropTypes.bool,
+    green: PropTypes.bool,
     outline: PropTypes.bool,
     text: PropTypes.bool,
     rounded: PropTypes.bool,

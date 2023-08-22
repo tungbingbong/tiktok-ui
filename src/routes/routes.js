@@ -18,11 +18,11 @@ import WiderLayout from '~/layouts/WiderLayout';
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.following, component: Following },
-    { path: config.routes.profile, component: Profile, layout: WiderLayout },
     { path: config.routes.explore, component: Explore },
     { path: config.routes.live, component: Live },
     { path: config.routes.notfound, component: NotFound },
     { path: config.routes.upload, component: Upload, layout: HeaderOnly },
+    { path: config.routes.profile, component: Profile, layout: WiderLayout },
     { path: config.routes.search, component: Search, layout: null },
 ];
 

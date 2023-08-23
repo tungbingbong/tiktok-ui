@@ -1,0 +1,153 @@
+.wrapper {
+    padding-bottom: 32px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0, 0.9);
+}
+
+.footer-header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 40px 0 0 378px;
+}
+
+.footer-logoTiktok {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 43px;
+    left: 144px;
+}
+
+.footer-logoTiktok-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+}
+
+.footer-logoTiktok-text {
+    height: 24px;
+    width: 95px;
+    margin-top: 6px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+    color: rgb(255, 255, 255);
+    padding-right: 8px;
+    margin-bottom: 20px;
+    max-width: 226px;
+}
+
+.footer-content-headline {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255);
+}
+
+.footer-content-text {
+    position: relative;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.footer-content-text a {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-bottom {
+    padding: 0px 144px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.selection-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 172px;
+    height: 36px;
+    padding: 0px 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: right;
+    border-radius: 2px;
+    border: 1px solid rgb(138, 139, 145);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.selection-container-title {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.selection-container-options {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.selection-time {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+@media (min-width: 768px) {
+    .footer-header {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding-left: 288px;
+    }
+
+    .footer-logoTiktok {
+        position: absolute;
+        top: 44px;
+        left: 80px;
+        margin-bottom: 0px;
+    }
+
+    .footer-content {
+        width: 223px;
+        margin-bottom: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer-header {
+        padding-left: 384px;
+    }
+
+    .footer-logoTiktok {
+        left: 160px;
+    }
+}

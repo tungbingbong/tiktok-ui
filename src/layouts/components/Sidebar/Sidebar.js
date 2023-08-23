@@ -12,7 +12,6 @@ import {
     ExploreActiveIcon,
     VideoActiveIcon,
 } from '~/components/Icons';
-// import SuggestedAccounts from '~/components/SuggestedAccounts';
 import SidebarAccountSpinner from './SidebarAccountSpinner';
 import config from '~/config';
 import * as userService from '~/services/userService';
@@ -26,7 +25,7 @@ const INIT_PAGE = 1;
 const PER_PAGE = 5;
 
 function Sidebar() {
-    const [page, setPage] = useState(INIT_PAGE);
+    const [page, setPage] = useState(PER_PAGE);
     const [suggestedUsers, setSuggestedUsers] = useState([]);
     const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE);
     const [followingUsers, setFollowingUsers] = useState([]);
@@ -45,7 +44,7 @@ function Sidebar() {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [accessToken, page]);
 
     // Get following users
     useEffect(() => {
@@ -67,7 +66,7 @@ function Sidebar() {
         } else {
             setFollowingUsers([]);
         }
-    }, []);
+    }, [followingUsersPage, accessToken]);
 
     // Get following users
 

@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/alt-text */
 import { useSearchParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import React from 'react';
@@ -25,8 +24,8 @@ function Footer() {
         <div className={cx('wrapper')}>
             <footer className={cx('footer-header')}>
                 <div className={cx('footer-logoTiktok')}>
-                    <img src={images.whiteLogoIcon} className={cx('footer-logoTiktok-icon')} />
-                    <img src={images.whiteLogoText} className={cx('footer-logoTiktok-text')} />
+                    <img src={images.whiteLogoIcon} alt="Tiktok" className={cx('footer-logoTiktok-icon')} />
+                    <img src={images.whiteLogoText} alt="Tiktok" className={cx('footer-logoTiktok-text')} />
                 </div>
                 <div className={cx('footer-content')}>
                     <h4 className={cx('footer-content-headline')}>Company</h4>
@@ -119,7 +118,7 @@ function Footer() {
                     </svg>
                     <select
                         className={cx('selection-container-options')}
-                        value={lang ?? ''}
+                        value={lang ?? 'English'}
                         onChange={(e) => handleChangeLanguage(e)}
                     >
                         <option value="English">English</option>

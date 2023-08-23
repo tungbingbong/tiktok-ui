@@ -53,7 +53,7 @@ function Video({ video, isFollowingTheOwner }) {
         } else {
             setDescription(videoDesc);
         }
-    }, []);
+    }, [video.description]);
 
     useEffect(() => {
         if (isVisible) {

@@ -77,7 +77,12 @@ function SignUp() {
             <div className={cx('term-and-condition')}>
                 <p>
                     By continuing, you agree to TikTok's{' '}
-                    <a className={cx('link')} href="https://www.tiktok.com/legal/terms-of-service-row" target="_blank">
+                    <a
+                        className={cx('link')}
+                        href="https://www.tiktok.com/legal/terms-of-service-row"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
                         Terms of Service
                     </a>{' '}
                     and confirm that you have read TikTok's{' '}

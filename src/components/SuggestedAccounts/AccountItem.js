@@ -34,7 +34,7 @@ function AccountItem({ data }) {
                 popperOptions={{
                     strategy: 'fixed',
                 }}
-                delay={[200, 0]}
+                delay={[700, 0]}
                 offset={[0, 2]}
                 touch={false}
                 placement="bottom"

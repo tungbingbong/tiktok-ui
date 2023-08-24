@@ -19,6 +19,7 @@ function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [cursor, setCursor] = useState(-1);
 
     const debouncedValue = useDebounce(searchValue, 500);
 
@@ -75,6 +76,19 @@ function Search() {
         }
     };
 
+    const handleKeyDown = (e) => {
+        if (e.keyCode === 38 && cursor >= 0) {
+            // press Arrow Up on keyboard
+            setCursor((prev) => prev - 1);
+        } else if (e.keyCode === 40 && cursor <= searchResult.length - 1) {
+            // press Arrow Down on keyboard
+            setCursor((prev) => prev + 1);
+        } else if (e.keyCode === 13 && cursor >= 0 && cursor <= searchResult.length - 1) {
+            // press Enter on keyboard
+            window.location.href = `/@${searchResult[cursor].nickname}`;
+        }
+    };
+
     return (
         // Using a wrapper <div> tag around the reference element solves
         // this by creating a new parentNode context.
@@ -86,8 +100,12 @@ function Search() {
                     <div className={cx('search-result')} {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            {searchResult.map((result) => (
-                                <AccountItem key={result.id} data={result} />
+                            {searchResult.map((account, index) => (
+                                <AccountItem
+                                    key={account.id}
+                                    data={account}
+                                    className={`${cx('wrapper')} ${cursor === index ? cx('wrapper-cursor') : ''}`}
+                                />
                             ))}
                         </PopperWrapper>
                     </div>
@@ -101,7 +119,8 @@ function Search() {
                         placeholder="Search accounts or videos..."
                         spellCheck={false}
                         onChange={handleChange}
-                        onFocus={(e) => setShowResult(true)}
+                        onFocus={() => setShowResult(true)}
+                        onKeyDown={(e) => handleKeyDown(e)}
                     />
 
                     {!!searchValue && !loading && (

@@ -1,17 +1,31 @@
-.wrapper {
-    display: flex;
-    align-items: center;
-    padding: 9px 16px;
-    cursor: pointer;
+// .wrapper {
+//     display: flex;
+//     align-items: center;
+//     padding: 9px 16px;
+//     cursor: pointer;
 
-    &:hover {
-        background: rgba(22, 24, 35, 0.03);
-    }
+//     &:hover {
+//         background: rgba(22, 24, 35, 0.03);
+//     }
 
-    &:focus-visible {
-        outline-style: auto;
-    }
-}
+//     &:focus-visible {
+//         outline-style: auto;
+//     }
+// }
+
+// .wrapper-cursor {
+//     display: flex;
+//     align-items: center;
+//     padding: 9px 16px;
+//     cursor: pointer;
+//     background: rgba(22, 24, 35, 0.03);
+
+//     &:focus-visible {
+//         outline-style: auto;
+//     }
+// }
+
+// Class wrapper move to Search.module.scss file to handle when className change = cursor...
 
 .avatar {
     width: 40px;

@@ -8,6 +8,8 @@ import * as userService from '~/services/userService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { AuthUserContext } from '~/App';
+import Video from './Video';
+import Like from './Like';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +19,7 @@ function Profile() {
     const [followed, setFollowed] = useState(false);
     const authUser = useContext(AuthUserContext);
     const accessToken = authUser && authUser.meta.token ? authUser.meta.token : '';
+    const [activeTab, setActiveTab] = useState('videos');
 
     useEffect(() => {
         if (nickname) {
@@ -31,14 +34,6 @@ function Profile() {
                 });
         }
     }, [nickname, accessToken]);
-
-    function handleOnMouseOver(e) {
-        e.target.play();
-    }
-
-    function handleOnMouseLeave(e) {
-        e.target.pause();
-    }
 
     function handleFollow() {
         if (!accessToken) {
@@ -180,35 +175,25 @@ function Profile() {
             </div>
             <div className={cx('body-wrapper')}>
                 <div className={cx('video-feedtab')}>
-                    <p className={`${cx('tab')} active`} id="tab-video">
-                        <span>Videos</span>
-                    </p>
-                    <p className={cx('tab')} id="tab-liked">
-                        <LockIcon width="18" height="18" classes="mr-2" />
-                        Liked
-                    </p>
+                    <div onClick={() => setActiveTab('videos')}>
+                        <p className={`${cx('tab')} active`} id="tab-video">
+                            <span>Videos</span>
+                        </p>
+                    </div>
+                    <div onClick={() => setActiveTab('liked')}>
+                        <p className={cx('tab')} id="tab-liked">
+                            <LockIcon width="18" height="18" classes="mr-2" />
+                            Liked
+                        </p>
+                    </div>
+                    <div
+                        className={`${cx('bottom-line')} ${
+                            activeTab === 'videos' ? 'translate-x-0' : 'translate-x-full'
+                        } `}
+                    ></div>
                 </div>
-                <div className={cx('bottom-line')}></div>
-                <div className={cx('video-grid')}>
-                    {user.videos.map((video, key) => (
-                        <div key={key}>
-                            <video
-                                className={cx('video-each')}
-                                controls
-                                loop
-                                muted
-                                playsInline
-                                poster={video.thumb_url}
-                                onMouseOver={(e) => handleOnMouseOver(e)}
-                                onMouseLeave={(e) => handleOnMouseLeave(e)}
-                            >
-                                <source src={video.file_url} type="video/mp4" />
-                                Your browser does not support HTML video.
-                            </video>
-                            <p className={cx('video-desc')}>{video.description}</p>
-                        </div>
-                    ))}
-                </div>
+                {activeTab === 'videos' && <Video user={user} videos={user.videos} />}
+                {activeTab === 'liked' && <Like user={user} />}
             </div>
         </div>
     ) : (

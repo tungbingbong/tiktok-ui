@@ -332,3 +332,75 @@
     word-wrap: break-word;
     box-sizing: content-box;
 }
+
+.no-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 40px 0;
+    width: 100%;
+}
+
+.no-video-headline {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.no-video-text {
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(0, 0, 0, 0.5);
+}
+
+.liked-video {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0px auto;
+}
+
+.liked-video-icon {
+    display: flex;
+    width: 90px;
+    height: 90px;
+}
+
+.liked-video-title {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 700;
+    color: rgb(22, 24, 35);
+    margin-top: 24px;
+}
+
+.liked-video-desc {
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 400;
+    color: rgba(22, 24, 35, 0.75);
+    margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+    .liked-video-title {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+        color: rgb(22, 24, 35);
+        margin-top: 24px;
+    }
+
+    .liked-video-desc {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        color: rgba(22, 24, 35, 0.75);
+        margin-top: 8px;
+    }
+}

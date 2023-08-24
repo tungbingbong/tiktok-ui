@@ -35,7 +35,7 @@ function Sidebar() {
     // Get suggested users
     useEffect(() => {
         userService
-            .getSuggestedUsers({ page, perPage: PER_PAGE, accessToken: accessToken })
+            .getSuggestedUsers({ page: 1, perPage: page, accessToken: accessToken })
             .then((data) => {
                 if (Array.isArray(data)) {
                     setSuggestedUsers((prevUsers) => [...prevUsers, ...data]);
@@ -68,7 +68,24 @@ function Sidebar() {
         }
     }, [followingUsersPage, accessToken]);
 
-    // Get following users
+    function moreSuggestedUsers() {
+        if (suggestedUsers.length === PER_PAGE) {
+            // Get 20 users
+            setPage(PER_PAGE * 4);
+        } else {
+            setPage(PER_PAGE);
+        }
+    }
+
+    function moreFollowingUsers() {
+        // Stop call API if last page has < PER_PAGE users (no more users)
+        // Or has reached 6th page
+        if (followingUsers.length === PER_PAGE * 6 || followingUsers.length < followingUsersPage * PER_PAGE) {
+            setFollowingUsersPage(INIT_PAGE);
+        } else {
+            setFollowingUsersPage((prevPage) => prevPage + 1);
+        }
+    }
 
     return (
         <aside className={cx('wrapper')}>
@@ -89,8 +106,18 @@ function Sidebar() {
                 <MenuItem title="LIVE" to={config.routes.live} icon={<VideoIcon />} activeIcon={<VideoActiveIcon />} />
             </Menu>
             <Suspense fallback={<SidebarAccountSpinner label="Suggested accounts" />}>
-                <SuggestedAccounts label="Suggested accounts" data={suggestedUsers} />
-                <SuggestedAccounts label="Following accounts" data={followingUsers} />
+                <SuggestedAccounts
+                    label="Suggested accounts"
+                    moreLabel={suggestedUsers.length === PER_PAGE ? 'See all' : 'See less'}
+                    data={suggestedUsers}
+                    moreFunc={moreSuggestedUsers}
+                />
+                <SuggestedAccounts
+                    label="Following accounts"
+                    moreLabel={followingUsers.length === PER_PAGE ? 'See all' : 'See less'}
+                    data={followingUsers}
+                    moreFunc={moreFollowingUsers}
+                />
             </Suspense>
         </aside>
     );

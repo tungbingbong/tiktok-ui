@@ -1,0 +1,97 @@
+.signup-container {
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.signup-content {
+    margin: auto;
+    width: 80%;
+}
+
+.signup-title {
+    color: rgb(22, 24, 35);
+    font-size: 28px;
+    line-height: 32px;
+    margin: 16px auto;
+    text-align: center;
+    font-weight: 700;
+}
+
+.channel-item {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 16px;
+    word-break: keep-all;
+    white-space: nowrap;
+    color: rgb(22, 24, 35);
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+.icon {
+    position: absolute;
+    display: flex;
+    left: 12px;
+    font-size: 20px;
+}
+
+.term-and-condition {
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background: rgb(255, 255, 255);
+    padding: 16px 30px;
+    margin-bottom: unset;
+}
+
+.signup-policy-text {
+    color: rgba(22, 24, 35, 0.5);
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+    width: 375px;
+    text-align: center;
+}
+
+.link {
+    color: rgba(22, 24, 35, 1);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.modal-footer {
+    color: rgb(22, 24, 35);
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    height: 64px;
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.modal-footer-link {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(254, 44, 85);
+    margin-left: 8px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

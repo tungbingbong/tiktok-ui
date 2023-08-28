@@ -2,6 +2,10 @@
 import * as authService from '~/services/authService';
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header';
 import { useContext, useState } from 'react';
+import classNames from 'classnames/bind';
+import styles from './EmailAndPasswordLoginForm.module.scss';
+
+const cx = classNames.bind(styles);
 
 function EmailAndPasswordLoginForm() {
     const value = useContext(ModalBodyNameContext);
@@ -26,28 +30,28 @@ function EmailAndPasswordLoginForm() {
 
     return (
         <>
-            <div className="overflow-auto" style={{ flex: '1 1 0%' }}>
-                <div className="m-auto w-4/5">
-                    <h3 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold my-4 mx-auto">Log in</h3>
+            <div className={cx('loginForm-container')}>
+                <div className={cx('loginForm-content')}>
+                    <h3 className={cx('loginForm-title')}>Log in</h3>
+
+                    <div className={cx('loginForm-desc')}>
+                        <label>Email or username</label>
+                        <a
+                            href="#"
+                            className={cx('loginForm-loginPhone')}
+                            onClick={(event) => {
+                                event.preventDefault();
+                                value.handleModalBodyName('login-with-phone');
+                            }}
+                        >
+                            Log in with phone
+                        </a>
+                    </div>
 
                     <form>
-                        <div className="text-base font-semibold flex justify-between mb-2">
-                            <label>Email or username</label>
-                            <a
-                                href="#"
-                                className="font-semibold text-xs hover:underline text-black/60"
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    value.handleModalBodyName('login-with-phone');
-                                }}
-                            >
-                                Log in with phone
-                            </a>
-                        </div>
-                        <div className="mb-2">
+                        <div className={cx('loginForm-inputForm')}>
                             <input
-                                className="rounded text-base h-11 w-full border border-solid border-black/10 bg-black/5 caret-primary"
-                                style={{ paddingInlineStart: '12px', paddingInlineEnd: '12px' }}
+                                className={cx('loginForm-input')}
                                 name="email"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
@@ -55,10 +59,9 @@ function EmailAndPasswordLoginForm() {
                                 placeholder="Username or email"
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className={cx('loginForm-inputForm')}>
                             <input
-                                className="rounded text-base h-11 w-full border border-solid border-black/10 bg-black/5 caret-primary"
-                                style={{ paddingInlineStart: '12px', paddingInlineEnd: '12px' }}
+                                className={cx('loginForm-input')}
                                 name="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -68,7 +71,7 @@ function EmailAndPasswordLoginForm() {
                         </div>
                         <a
                             href="#"
-                            className="font-semibold text-xs hover:underline text-black/60"
+                            className={cx('loginForm-forgotPassword')}
                             onClick={(event) => {
                                 event.preventDefault();
                                 value.handleModalBodyName('reset-password-with-email');
@@ -77,11 +80,7 @@ function EmailAndPasswordLoginForm() {
                             Forget password?
                         </a>
                         <button
-                            className="mt-8 border-none bg-primary text-white text-base leading-5 font-bold font-primary rounded flex items-center justify-center w-full cursor-pointer py-1.5 px-2"
-                            style={{
-                                minWidth: '120px',
-                                minHeight: '46px',
-                            }}
+                            className={cx('loginForm-loginButton')}
                             onClick={(e) => {
                                 e.preventDefault();
                                 loginUser();

@@ -1,35 +1,41 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useContext } from 'react';
+import classNames from 'classnames/bind';
+
+import styles from './PhoneAndPasswordLoginForm.module.scss';
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header';
+
+const cx = classNames.bind(styles);
 
 function PhoneAndPasswordLoginForm() {
     const value = useContext(ModalBodyNameContext);
 
     return (
         <>
-            <div className="overflow-auto" style={{ flex: '1 1 0%' }}>
-                <div className="m-auto" style={{ width: '375px' }}>
-                    <h3 className="text-center text-4xl font-bold my-4 mx-auto">Log in</h3>
-                    <div>
-                        <div>
-                            <form>
-                                <div className="text-base font-semibold flex justify-between mb-2">
-                                    <label>Phone</label>
-                                    <a
-                                        href="#"
-                                        className="font-semibold text-xs hover:underline text-black/60"
-                                        onClick={(event) => {
-                                            event.preventDefault();
-                                            value.handleModalBodyName('login-with-email');
-                                        }}
-                                    >
-                                        Log in with email or username
-                                    </a>
-                                </div>
-                                <div className="flex items-center rounded border border-solid border-black/10 mb-2 bg-black/5">
-                                    <div className="relative h-11 p-3 flex items-center text-base leading-none cursor-pointer after:content-[''] after:w-px after:h-7 after:bg-black/10 after:absolute after:right-0 after:left-unset">
-                                        <span style={{ marginInlineEnd: '12px' }}>TH +66</span>
+            <div className={cx('loginPassword-wrapper')}>
+                <div className={cx('loginPassword-content')}>
+                    <form>
+                        <h3 className={cx('loginPassword-title')}>Log in</h3>
+                        <div className={cx('loginPassword-desc')}>
+                            <label>Phone</label>
+                            <a
+                                href="#"
+                                className={cx('loginPassword-loginEmail')}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    value.handleModalBodyName('login-with-email');
+                                }}
+                            >
+                                Log in with email or username
+                            </a>
+                        </div>
+                        <div className={cx('loginPassword-phoneNumber')}>
+                            <div className={cx('loginPassword-phoneDivContainer')}>
+                                <div className={cx('loginPassword-selectionContainer')}>
+                                    <div className={cx('loginPassword-labelContainer')}>
+                                        <span className={cx('loginPassword-regionLabel')}>VN +84</span>
                                         <svg
+                                            className={cx('loginPassword-arrowIcon')}
                                             width="1em"
                                             height="1em"
                                             viewBox="0 0 48 48"
@@ -43,59 +49,64 @@ function PhoneAndPasswordLoginForm() {
                                             ></path>
                                         </svg>
                                     </div>
+                                </div>
+                                <div className={cx('loginPassword-basedInput')}>
                                     <input
-                                        className="h-11 grow bg-transparent text-base outline-none caret-primary"
-                                        style={{ paddingInlineStart: '12px', paddingInlineEnd: '12px' }}
+                                        className={cx('loginPassword-inputPhoneNumber')}
                                         name="phoneNumber"
                                         type="text"
                                         placeholder="Phone number"
                                     />
                                 </div>
-                                <div className="mb-2">
-                                    <input
-                                        className="rounded text-base h-11 w-full border border-solid border-black/10 bg-black/5 caret-primary"
-                                        style={{ paddingInlineStart: '12px', paddingInlineEnd: '12px' }}
-                                        name="password"
-                                        type="password"
-                                        placeholder="Password"
-                                    />
-                                </div>
-                                <div className="flex items-center">
-                                    <a
-                                        href="#"
-                                        className="font-semibold text-xs hover:underline text-black/60 mr-4"
-                                        onClick={(event) => {
-                                            event.preventDefault();
-                                            value.handleModalBodyName('reset-password-with-phone');
-                                        }}
-                                    >
-                                        Forgot password?
-                                    </a>
-                                    <span className="text-black/20">|</span>
-                                    <a
-                                        href="#"
-                                        className="font-semibold text-xs hover:underline text-black/60 ml-4"
-                                        onClick={(event) => {
-                                            event.preventDefault();
-                                            value.handleModalBodyName('login-with-phone');
-                                        }}
-                                    >
-                                        Log in with code
-                                    </a>
-                                </div>
-                                <button
-                                    className="mt-8 border-none bg-primary text-white text-base leading-5 font-bold font-primary rounded flex items-center justify-center w-full cursor-pointer py-1.5 px-2"
-                                    style={{
-                                        minWidth: '120px',
-                                        minHeight: '46px',
-                                    }}
-                                >
-                                    Log in
-                                </button>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                        <div className={cx('loginPassword-fillPassword')}>
+                            <input
+                                className={cx('loginPassword-fillPasswordInput')}
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                            />
+                        </div>
+                        <div className={cx('loginPassword-forgotPassword')}>
+                            <a
+                                href="#"
+                                className={cx('loginPassword-linkForgotPassword')}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    value.handleModalBodyName('reset-password-with-phone');
+                                }}
+                            >
+                                Forgot password?
+                            </a>
+                            <span className={cx('loginPassword-spanSplitLine')}></span>
+                            <a
+                                href="#"
+                                className={cx('loginPassword-linkLoginCode')}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    value.handleModalBodyName('login-with-phone');
+                                }}
+                            >
+                                Log in with code
+                            </a>
+                        </div>
+                        <button className={cx('loginPassword-submitButton')}>Log in</button>
+                    </form>
                 </div>
+            </div>
+            <div className={cx('loginPassword-signup')}>
+                <div>Don't have an account?</div>
+                <a
+                    className={cx('loginPassword-signup-link')}
+                    href="/signup"
+                    onClick={(event) => {
+                        event.preventDefault();
+                        value.handleModalBodyName('signup');
+                    }}
+                >
+                    Sign up
+                </a>
             </div>
         </>
     );

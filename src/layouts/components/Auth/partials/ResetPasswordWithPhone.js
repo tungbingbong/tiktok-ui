@@ -1,38 +1,41 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useContext } from 'react';
+import classNames from 'classnames/bind';
+
+import styles from './ResetPasswordWithPhone.module.scss';
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header';
+
+const cx = classNames.bind(styles);
 
 function ResetPasswordWithPhone() {
     const value = useContext(ModalBodyNameContext);
 
     return (
         <>
-            <div className="overflow-auto" style={{ flex: '1 1 0%' }}>
-                <div className="m-auto w-4/5">
-                    <h3 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold my-4 mx-auto">
-                        Reset password
-                    </h3>
-                    <div>
-                        <div>
-                            <form>
-                                <div className="text-base font-semibold flex justify-between mb-2">
-                                    <label>Enter phone number</label>
-                                    <a
-                                        href="#"
-                                        className="font-semibold text-xs hover:underline text-black/60"
-                                        onClick={(event) => {
-                                            event.preventDefault();
-                                            value.handleModalBodyName('reset-password-with-email');
-                                        }}
-                                    >
-                                        Reset with email
-                                    </a>
-                                </div>
-
-                                <div className="flex items-center rounded border border-solid border-black/10 mb-2 bg-black/5">
-                                    <div className="relative h-11 p-3 flex items-center text-base leading-none cursor-pointer after:content-[''] after:w-px after:h-7 after:bg-black/10 after:absolute after:right-0 after:left-unset">
-                                        <span style={{ marginInlineEnd: '12px' }}>TH +66</span>
+            <div className={cx('resetPassword-phoneWrapper')}>
+                <div className={cx('resetPassword-phoneContent')}>
+                    <form>
+                        <h3 className={cx('resetPassword-phoneTitle')}>Reset password</h3>
+                        <div className={cx('resetPassword-phoneDesc')}>
+                            <label>Enter phone number</label>
+                            <a
+                                href="#"
+                                className={cx('resetPassword-phoneLinkEmail')}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    value.handleModalBodyName('reset-password-with-email');
+                                }}
+                            >
+                                Reset with email
+                            </a>
+                        </div>
+                        <div className={cx('resetPassword-phoneNumber')}>
+                            <div className={cx('resetPassword-phoneDivContainer')}>
+                                <div className={cx('resetPassword-selectionContainer')}>
+                                    <div className={cx('resetPassword-labelContainer')}>
+                                        <span className={cx('resetPassword-regionLabel')}>VN +84</span>
                                         <svg
+                                            className={cx('resetPassword-arrowIcon')}
                                             width="1em"
                                             height="1em"
                                             viewBox="0 0 48 48"
@@ -46,48 +49,52 @@ function ResetPasswordWithPhone() {
                                             ></path>
                                         </svg>
                                     </div>
+                                </div>
+                                <div className={cx('resetPassword-basedInput')}>
                                     <input
-                                        className="h-11 grow bg-transparent text-base outline-none caret-primary"
-                                        style={{ paddingInlineStart: '12px', paddingInlineEnd: '12px' }}
+                                        className={cx('resetPassword-inputPhoneNumber')}
                                         name="phoneNumber"
                                         type="text"
                                         placeholder="Phone number"
                                     />
                                 </div>
-                                <div className="flex items-center justify-between rounded mb-2 bg-black/5">
-                                    <input
-                                        className="bg-transparent grow h-11 rounded-l border text-base border-solid border-black/10 caret-primary"
-                                        style={{ paddingInlineStart: '12px', paddingInlineEnd: '12px' }}
-                                        name="confirmCode"
-                                        type="text"
-                                        placeholder="Enter 6-digit code"
-                                    />
-                                    <button className="border border-solid border-black/10 h-11 rounded-r text-black/20 cursor-pointer text-base font-semibold font-primary px-4">
-                                        Send code
-                                    </button>
-                                </div>
-                                <div className="mb-2">
-                                    <input
-                                        className="rounded text-base h-11 w-full border border-solid border-black/10 bg-black/5 caret-primary"
-                                        style={{ paddingInlineStart: '12px', paddingInlineEnd: '12px' }}
-                                        name="password"
-                                        type="password"
-                                        placeholder="Password"
-                                    />
-                                </div>
-                                <button
-                                    className="mt-8 border-none bg-primary text-white text-base leading-5 font-bold font-primary rounded flex items-center justify-center w-full cursor-pointer py-1.5 px-2"
-                                    style={{
-                                        minWidth: '120px',
-                                        minHeight: '46px',
-                                    }}
-                                >
-                                    Log in
-                                </button>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                        <div className={cx('resetPassword-numberCode')}>
+                            <div className={cx('resetPassword-formInput')}>
+                                <input
+                                    className={cx('resetPassword-inputCode')}
+                                    name="confirmCode"
+                                    type="text"
+                                    placeholder="Enter 6-digit number"
+                                />
+                            </div>
+                            <button className={cx('resetPassword-buttonSendCode')}>Send code</button>
+                        </div>
+                        <div className={cx('resetPassword-passwordForm')}>
+                            <input
+                                className={cx('resetPassword-inputPassword')}
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                            />
+                        </div>
+                        <button className={cx('resetPassword-submitButton')}>Log in</button>
+                    </form>
                 </div>
+            </div>
+            <div className={cx('resetPassword-signup')}>
+                <div>Don't have an account?</div>
+                <a
+                    className={cx('resetPassword-signup-link')}
+                    href="/signup"
+                    onClick={(event) => {
+                        event.preventDefault();
+                        value.handleModalBodyName('signup');
+                    }}
+                >
+                    Sign up
+                </a>
             </div>
         </>
     );

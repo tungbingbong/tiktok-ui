@@ -1,0 +1,208 @@
+.loginPhone-wrapper {
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.loginPhone-content {
+    width: 80%;
+    margin: auto;
+}
+
+.loginPhone-title {
+    font-size: 32px;
+    margin: 16px auto;
+    font-weight: 700;
+    color: rgb(22, 24, 35);
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.loginPhone-desc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: rgb(22, 24, 35);
+}
+
+.loginPhone-loginEmail {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: rgba(22, 24, 35, 0.75);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.loginPhone-phoneNumber {
+    margin-bottom: 10px;
+}
+
+.loginPhone-phoneDivContainer {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    background: rgba(22, 24, 35, 0.06);
+    transition: all 0.3s ease 0s;
+}
+
+.loginPhone-selectionContainer {
+    position: relative;
+    cursor: pointer;
+}
+
+.loginPhone-labelContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    height: 44px;
+    position: relative;
+}
+
+.loginPhone-labelContainer::after {
+    content: '';
+    width: 1px;
+    height: 30px;
+    background: rgba(22, 24, 35, 0.12);
+    right: 0px;
+    left: unset;
+    position: absolute;
+}
+
+.loginPhone-regionLabel {
+    font-size: 16px;
+    line-height: 1;
+    color: rgb(22, 24, 35);
+    margin-inline-end: 12px;
+}
+
+.loginPhone-arrowIcon {
+    transform: rotateZ(0deg);
+    transition: all 0.3s ease 0s;
+}
+
+.loginPhone-basedInput {
+    position: relative;
+    flex: 1 1 0%;
+    width: 0px;
+    margin-bottom: 0px;
+}
+
+.loginPhone-inputPhoneNumber {
+    border-radius: 2px;
+    background-color: transparent;
+    border: none rgba(22, 24, 35, 0.12);
+    padding-inline-start: 12px;
+    color: rgb(22, 24, 35);
+    line-height: 100%;
+    outline: none;
+    font-size: 16px;
+    height: 44px;
+    caret-color: rgb(254, 44, 85);
+    width: 100%;
+    padding-inline-end: unset;
+}
+
+.loginPhone-numberCode {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    background-color: rgb(0, 0, 0, 0.05);
+}
+
+.loginPhone-formInput {
+    position: relative;
+    flex: 1 1 0%;
+    width: 0px;
+}
+
+.loginPhone-inputCode {
+    border-radius: 2px;
+    background-color: #f1f1f3;
+    border-right: 2px solid rgba(22, 24, 35, 0.12);
+    padding-inline-start: 12px;
+    color: rgb(22, 24, 35);
+    line-height: 100%;
+    outline: none;
+    font-size: 16px;
+    height: 44px;
+    caret-color: rgb(254, 44, 85);
+    width: 100%;
+}
+
+.loginPhone-buttonSendCode {
+    margin: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #161823;
+    border-radius: 0px 4px 4px 0px;
+    border-inline-start-width: 1.5px;
+    cursor: pointer;
+    padding: 0px 16px;
+    height: 44px;
+    flex-shrink: 0;
+    box-sizing: content-box;
+}
+
+.loginPhone-loginPassword {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 10px;
+    color: rgba(22, 24, 35, 0.75);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.loginPhone-submitButton {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(254, 44, 85);
+    min-width: 120px;
+    min-height: 46px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+    border: none;
+    padding: 6px 8px;
+    user-select: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 21px;
+}
+
+.loginPhone-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    line-height: 18px;
+    height: 64px;
+    color: rgb(22, 24, 35);
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+.loginPhone-signup-link {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(254, 44, 85);
+    margin-left: 8px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

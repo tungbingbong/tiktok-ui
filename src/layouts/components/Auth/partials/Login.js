@@ -12,7 +12,7 @@ import {
 } from '~/components/Icons';
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header';
 import classNames from 'classnames/bind';
-import styles from '~/layouts/components/Auth/AuthModal.module.scss';
+import styles from './Login.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -89,25 +89,25 @@ function Login() {
 
     return (
         <>
-            <div className="overflow-auto" style={{ flex: '1 1 0%' }}>
-                <div className="m-auto w-4/5">
-                    <h3 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold my-4 mx-auto">
-                        Log in to TikTok
-                    </h3>
+            <div className={cx('login-container')}>
+                <div className={cx('login-content')}>
+                    <h3 className={cx('login-title')}>Log in to TikTok</h3>
                     {renderButtons()}
                 </div>
             </div>
 
-            <div
-                className="font-primary h-16 border-t border-solid flex justify-center items-center text-base leading-4"
-                style={{
-                    color: 'rgb(22, 24, 35)',
-                    borderColor: 'rgba(22, 24, 35, 0.12)',
-                }}
-            >
+            <div className={cx('login-policy')}>
+                <p className={cx('login-policy-text')}>
+                    By continuing, you agree to TikTok's{' '}
+                    <strong className={cx('login-policy-link')}>Terms of Service</strong> and confirm that you have read
+                    TikTok's <strong className={cx('login-policy-link')}>Privacy Policy</strong>.
+                </p>
+            </div>
+
+            <div className={cx('login-signup')}>
                 <div>Don't have an account?</div>
                 <a
-                    className="hover:underline font-semibold ml-2 text-primary"
+                    className={cx('login-signup-link')}
                     href="/signup"
                     onClick={(event) => {
                         event.preventDefault();

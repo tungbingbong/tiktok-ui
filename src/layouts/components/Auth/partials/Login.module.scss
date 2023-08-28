@@ -1,0 +1,91 @@
+.login-container {
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.login-content {
+    margin: auto;
+    width: 80%;
+}
+
+.login-title {
+    color: rgb(22, 24, 35);
+    font-size: 28px;
+    line-height: 32px;
+    margin: 16px auto;
+    text-align: center;
+    font-weight: 700;
+}
+
+.channel-item {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 16px;
+    word-break: keep-all;
+    white-space: nowrap;
+    color: rgb(22, 24, 35);
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+.icon {
+    position: absolute;
+    display: flex;
+    left: 12px;
+    font-size: 20px;
+}
+
+.login-policy {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid rgba(22, 24, 35, 0.12);
+    padding: 16px 30px;
+}
+
+.login-policy-text {
+    color: rgba(22, 24, 35, 0.5);
+    font-size: 12px;
+    line-height: 15px;
+    width: 375px;
+    text-align: center;
+}
+
+.login-policy-link {
+    color: rgb(22, 24, 35);
+    font-weight: 500;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.login-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    line-height: 18px;
+    height: 64px;
+    color: rgb(22, 24, 35);
+}
+
+.login-signup-link {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(254, 44, 85);
+    margin-left: 8px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
